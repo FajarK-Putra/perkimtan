@@ -120,7 +120,7 @@ export default function ProgramKerjaPage() {
               Program Utama {currentYear}
             </h2>
             <div className="space-y-8">
-              {programKerja.map((program, index) => (
+              {programKerja.map((program) => (
                 <div key={program.id} className="bg-white rounded-lg shadow-md overflow-hidden">
                   <div className="bg-indigo-600 text-white px-6 py-4">
                     <div className="flex items-center justify-between">

@@ -42,7 +42,7 @@ export default function VisiMisiPage() {
             </div>
             <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-6">
               <p className="text-gray-800 text-lg leading-relaxed text-center font-medium">
-                "{dinasProfile.visi}"
+                &ldquo;{dinasProfile.visi}&rdquo;
               </p>
             </div>
           </div>

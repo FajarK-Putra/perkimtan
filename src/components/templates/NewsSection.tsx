@@ -52,7 +52,7 @@ export default function NewsSection() {
 
         {/* News Grid */}
         <div className="grid md:grid-cols-3 gap-6 mb-10">
-          {beritaTerkini.map((berita, index) => (
+          {beritaTerkini.map((berita) => (
             <article key={berita.id} className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg border border-white/20 overflow-hidden hover:shadow-2xl hover:scale-105 transition-all duration-300 group">
               {/* Image Placeholder */}
               <div className="aspect-video bg-gradient-to-br from-gray-100 via-gray-50 to-blue-50 relative overflow-hidden">

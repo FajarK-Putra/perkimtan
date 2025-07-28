@@ -1,5 +1,4 @@
 import { Metadata } from 'next'
-import { programKerja } from '@/lib/data'
 
 export const metadata: Metadata = {
   title: 'Rumah Susun Sederhana | Dinas Perkimtan Sumbar',

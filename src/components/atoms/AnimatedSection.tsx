@@ -40,7 +40,7 @@ export default function AnimatedSection({
 
   return (
     <div
-      ref={ref as any}
+      ref={ref as React.RefObject<HTMLDivElement>}
       className={`transition-all duration-300 ${getAnimationClass()} ${className}`}
       style={{ 
         animationDelay: isIntersecting ? `${delay}ms` : '0ms',

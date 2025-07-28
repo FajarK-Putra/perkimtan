@@ -4,8 +4,18 @@ import { strukturOrganisasi, dinasProfile } from '@/lib/data'
 import Image from 'next/image'
 import { useState, useEffect } from 'react'
 
+interface Pejabat {
+  id: number
+  nama: string
+  jabatan: string
+  foto: string
+  nip?: string
+  pendidikan?: string
+  pengalaman?: string[]
+}
+
 export default function StrukturPage() {
-  const [selectedPejabat, setSelectedPejabat] = useState<any>(null)
+  const [selectedPejabat, setSelectedPejabat] = useState<Pejabat | null>(null)
   const [showModal, setShowModal] = useState(false)
 
   useEffect(() => {
@@ -16,11 +26,6 @@ export default function StrukturPage() {
     kepala: strukturOrganisasi.find(p => p.jabatan === "Kepala Dinas"),
     sekretaris: strukturOrganisasi.find(p => p.jabatan === "Sekretaris"),
     kabid: strukturOrganisasi.filter(p => p.jabatan.includes("Kabid"))
-  }
-
-  const openModal = (pejabat: any) => {
-    setSelectedPejabat(pejabat)
-    setShowModal(true)
   }
 
   const closeModal = () => {
@@ -75,16 +80,6 @@ export default function StrukturPage() {
       ]
     }
   ]
-
-  const [selectedJabatan, setSelectedJabatan] = useState<string | null>(null)
-
-  const handleMouseEnter = (jabatan: string) => {
-    setSelectedJabatan(jabatan)
-  }
-
-  const handleMouseLeave = () => {
-    setSelectedJabatan(null)
-  }
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -181,13 +176,9 @@ export default function StrukturPage() {
 
                   {/* Tooltip */}
                   <div className={`absolute left-1/2 transform -translate-x-1/2 mt-2 w-48 bg-gray-800 text-white text-sm rounded-lg p-2 opacity-0 transition-opacity duration-300 pointer-events-none group-hover:opacity-100`}>
-                    {selectedJabatan === kabid.jabatan ? (
-                      <>
-                        <div className="font-semibold">{kabid.jabatan}</div>
-                        <div className="mt-1">{kabid.nama}</div>
-                        <div className="text-gray-400">{kabid.nip}</div>
-                      </>
-                    ) : null}
+                    <div className="font-semibold">{kabid.jabatan}</div>
+                    <div className="mt-1">{kabid.nama}</div>
+                    <div className="text-gray-400">{kabid.nip}</div>
                   </div>
                 </div>
               ))}
