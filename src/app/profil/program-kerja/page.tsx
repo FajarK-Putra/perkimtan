@@ -1,13 +1,17 @@
-import { Metadata } from 'next'
-import { programKerja, dinasProfile } from '@/lib/data'
+'use client'
 
-export const metadata: Metadata = {
-  title: 'Program Kerja | Dinas Perkimtan Sumbar',
-  description: 'Program kerja dan rencana strategis Dinas Perumahan, Kawasan Permukiman dan Pertanahan Sumatera Barat'
-}
+import { programKerja, dinasProfile } from '@/lib/data'
+import { useState, useEffect } from 'react'
 
 export default function ProgramKerjaPage() {
+  const [selectedYear, setSelectedYear] = useState(new Date().getFullYear())
+  const [animatedProgress, setAnimatedProgress] = useState(0)
   const currentYear = new Date().getFullYear()
+  
+  // Set document title for client component
+  useEffect(() => {
+    document.title = 'Program Kerja | Dinas Perkimtan Sumbar'
+  }, [])
   
   const strategiProgram = [
     {
@@ -26,6 +30,21 @@ export default function ProgramKerjaPage() {
       indikator: ["Jumlah sertifikat terbit", "Waktu penyelesaian", "Tingkat kepuasan"]
     }
   ]
+
+  // Progress animation effect
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setAnimatedProgress(75) // Contoh progress 75%
+    }, 500)
+    return () => clearTimeout(timer)
+  }, [])
+
+  const getProgressColor = (progress: number) => {
+    if (progress >= 80) return 'bg-green-500'
+    if (progress >= 60) return 'bg-blue-500'
+    if (progress >= 40) return 'bg-yellow-500'
+    return 'bg-red-500'
+  }
 
   const timeline = [
     {
@@ -241,6 +260,114 @@ export default function ProgramKerjaPage() {
               >
                 Lihat Layanan
               </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Progress Monitoring Section */}
+      <section className="py-16 bg-gradient-to-br from-blue-50 to-indigo-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">Monitoring Capaian Program</h2>
+            <p className="text-gray-600">Pantau progres realisasi program kerja tahun {selectedYear}</p>
+          </div>
+
+          {/* Year Selector */}
+          <div className="flex justify-center mb-8">
+            <div className="flex bg-white rounded-lg p-1 shadow-lg">
+              {[2024, 2025, 2026].map((year) => (
+                <button
+                  key={year}
+                  onClick={() => setSelectedYear(year)}
+                  className={`px-6 py-2 rounded-lg font-medium transition-all duration-200 ${
+                    selectedYear === year
+                      ? 'bg-blue-600 text-white shadow-md'
+                      : 'text-gray-600 hover:text-blue-600'
+                  }`}
+                >
+                  {year}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Progress Cards */}
+          <div className="grid md:grid-cols-3 gap-6">
+            {[
+              { program: 'Perumahan', target: 2500, realisasi: 1875, satuan: 'unit' },
+              { program: 'Sertifikasi', target: 12500, realisasi: 9375, satuan: 'sertifikat' },
+              { program: 'Infrastruktur', target: 180, realisasi: 135, satuan: 'lokasi' }
+            ].map((item, index) => {
+              const progress = Math.round((item.realisasi / item.target) * 100)
+              return (
+                <div key={index} className="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow duration-300">
+                  <div className="flex items-center justify-between mb-4">
+                    <h3 className="text-lg font-semibold text-gray-900">{item.program}</h3>
+                    <span className={`text-sm font-bold px-3 py-1 rounded-full text-white ${getProgressColor(progress)}`}>
+                      {progress}%
+                    </span>
+                  </div>
+                  
+                  <div className="mb-4">
+                    <div className="flex justify-between text-sm text-gray-600 mb-2">
+                      <span>Realisasi: {item.realisasi.toLocaleString()} {item.satuan}</span>
+                      <span>Target: {item.target.toLocaleString()} {item.satuan}</span>
+                    </div>
+                    <div className="w-full bg-gray-200 rounded-full h-3">
+                      <div 
+                        className={`h-3 rounded-full transition-all duration-1000 ease-out ${getProgressColor(progress)}`}
+                        style={{ width: `${progress}%` }}
+                      ></div>
+                    </div>
+                  </div>
+
+                  <div className="text-xs text-gray-500">
+                    Status: {progress >= 80 ? 'Sangat Baik' : progress >= 60 ? 'Baik' : progress >= 40 ? 'Cukup' : 'Perlu Perhatian'}
+                  </div>
+                </div>
+              )
+            })}
+          </div>
+
+          {/* Overall Progress */}
+          <div className="mt-8 bg-white rounded-xl shadow-lg p-6">
+            <h3 className="text-xl font-semibold text-gray-900 mb-4 text-center">Capaian Keseluruhan</h3>
+            <div className="flex items-center justify-center">
+              <div className="relative w-32 h-32">
+                <svg className="w-32 h-32 transform -rotate-90" viewBox="0 0 100 100">
+                  <circle
+                    cx="50"
+                    cy="50"
+                    r="40"
+                    stroke="#e5e7eb"
+                    strokeWidth="8"
+                    fill="none"
+                  />
+                  <circle
+                    cx="50"
+                    cy="50"
+                    r="40"
+                    stroke="#3b82f6"
+                    strokeWidth="8"
+                    fill="none"
+                    strokeDasharray={`${animatedProgress * 2.51} 251`}
+                    strokeLinecap="round"
+                    className="transition-all duration-1000 ease-out"
+                  />
+                </svg>
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <span className="text-2xl font-bold text-gray-900">{animatedProgress}%</span>
+                </div>
+              </div>
+              <div className="ml-8">
+                <p className="text-gray-600">
+                  Realisasi program kerja tahun {selectedYear} mencapai <strong>{animatedProgress}%</strong> dari target yang ditetapkan.
+                </p>
+                <p className="text-sm text-gray-500 mt-2">
+                  Data terakhir diperbarui: {new Date().toLocaleDateString('id-ID')}
+                </p>
+              </div>
             </div>
           </div>
         </div>

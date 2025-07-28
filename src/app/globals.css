@@ -15,12 +15,20 @@
 
 * {
   scroll-behavior: smooth;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 14px; /* Mengurangi dari 15px ke 14px untuk efek yang lebih terlihat */
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-inter), 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* Custom scrollbar */

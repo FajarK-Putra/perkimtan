@@ -7,9 +7,9 @@ interface LogoProps {
 }
 
 const sizeClasses = {
-  sm: 'h-8',
-  md: 'h-10',
-  lg: 'h-12'
+  sm: 'h-7',
+  md: 'h-8',
+  lg: 'h-10'
 }
 
 export default function Logo({ className = '', size = 'md' }: LogoProps) {
@@ -23,7 +23,7 @@ export default function Logo({ className = '', size = 'md' }: LogoProps) {
         className={`${sizeClasses[size]} w-auto`}
       />
       <div className="flex flex-col">
-        <span className="text-sm font-bold text-blue-900 leading-tight">
+        <span className="text-xs font-bold text-blue-900 leading-tight">
           PERKIMTAN
         </span>
         <span className="text-xs text-blue-700 leading-tight">
