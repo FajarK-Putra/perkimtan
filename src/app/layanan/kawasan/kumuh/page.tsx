@@ -7,151 +7,195 @@ export const metadata: Metadata = {
 
 export default function KumuhPage() {
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-4">
-            Penanganan Kawasan Permukiman Kumuh
-          </h1>
-          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-            Program pencegahan dan peningkatan kualitas permukiman kumuh untuk mewujudkan 
-            &quot;Kota Tanpa Kumuh&quot; di Sumatera Barat
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-blue-50">
+      {/* Header Section */}
+      <div className="bg-gradient-to-r from-red-600 to-red-800 text-white py-12">
+        <div className="max-w-6xl mx-auto px-4">
+          <h1 className="text-3xl font-bold mb-4">Penataan Kawasan Kumuh</h1>
+          <p className="text-red-100 text-lg">
+            Program penataan dan peningkatan kualitas kawasan kumuh di Sumatera Barat
           </p>
         </div>
+      </div>
 
-        {/* Content */}
+      <div className="max-w-6xl mx-auto px-4 py-8">
+        {/* Introduction */}
         <div className="bg-white rounded-lg shadow-sm p-8 mb-8">
-          <h2 className="text-2xl font-semibold text-gray-900 mb-6">
-            Program Penanganan Kumuh
+          <h2 className="text-2xl font-semibold text-gray-900 mb-4">
+            Tentang Program Penataan Kawasan Kumuh
           </h2>
+          <p className="text-gray-600 mb-6">
+            Program penataan kawasan kumuh merupakan upaya terpadu untuk meningkatkan
+            kualitas hidup masyarakat di kawasan kumuh melalui penyediaan infrastruktur
+            dasar, peningkatan kualitas perumahan, dan pemberdayaan masyarakat.
+          </p>
           
-          <div className="prose max-w-none text-gray-600 mb-8">
-            <p>
-              Program penanganan kawasan permukiman kumuh bertujuan untuk meningkatkan kualitas 
-              hidup masyarakat yang tinggal di kawasan kumuh melalui perbaikan infrastruktur, 
-              fasilitas umum, dan kualitas hunian. Program ini merupakan bagian dari upaya 
-              mewujudkan &quot;Kota Tanpa Kumuh&quot; di Sumatera Barat.
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="bg-red-50 rounded-lg p-6">
+              <div className="text-red-600 mb-4">
+                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2z" />
+                </svg>
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                Infrastruktur
+              </h3>
+              <p className="text-gray-600 text-sm">
+                Pembangunan dan perbaikan infrastruktur dasar seperti jalan, drainase, dan utilitas
+              </p>
+            </div>
+
+            <div className="bg-blue-50 rounded-lg p-6">
+              <div className="text-blue-600 mb-4">
+                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                </svg>
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                Perumahan
+              </h3>
+              <p className="text-gray-600 text-sm">
+                Peningkatan kualitas hunian dan pembangunan rumah layak huni
+              </p>
+            </div>
+
+            <div className="bg-green-50 rounded-lg p-6">
+              <div className="text-green-600 mb-4">
+                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                </svg>
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                Pemberdayaan
+              </h3>
+              <p className="text-gray-600 text-sm">
+                Program pemberdayaan masyarakat dan peningkatan ekonomi lokal
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Definition and Criteria */}
+        <div className="bg-white rounded-lg shadow-sm p-8 mb-8">
+          <h3 className="text-2xl font-semibold text-gray-900 mb-6">
+            Definisi dan Kriteria Kawasan Kumuh
+          </h3>
+          
+          <div className="mb-6">
+            <h4 className="text-lg font-medium text-gray-900 mb-3">
+              Definisi Kawasan Kumuh
+            </h4>
+            <p className="text-gray-600 mb-4">
+              Kawasan kumuh adalah kawasan yang tidak layak huni karena ketidakteraturan bangunan,
+              tingkat kepadatan bangunan yang tinggi, dan kualitas bangunan serta sarana dan
+              prasarana yang tidak memenuhi syarat.
             </p>
           </div>
 
-          {/* Strategi Penanganan */}
-          <div className="mb-8">
-            <h3 className="text-xl font-semibold text-gray-900 mb-4">
-              Strategi Penanganan
-            </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="bg-red-50 rounded-lg p-4">
-                <h4 className="font-medium text-gray-900 mb-2">Pencegahan</h4>
-                <ul className="text-gray-600 text-sm space-y-1">
-                  <li>• Penataan ruang yang baik</li>
-                  <li>• Penyediaan perumahan layak</li>
-                  <li>• Pengendalian pembangunan</li>
-                  <li>• Edukasi masyarakat</li>
-                </ul>
-              </div>
-              <div className="bg-blue-50 rounded-lg p-4">
-                <h4 className="font-medium text-gray-900 mb-2">Peningkatan Kualitas</h4>
-                <ul className="text-gray-600 text-sm space-y-1">
-                  <li>• Perbaikan infrastruktur</li>
-                  <li>• Peningkatan fasilitas umum</li>
-                  <li>• Perbaikan kualitas hunian</li>
-                  <li>• Pemberdayaan masyarakat</li>
-                </ul>
-              </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="bg-red-50 rounded-lg p-4">
+              <h4 className="font-medium text-gray-900 mb-2">1. Bangunan</h4>
+              <p className="text-gray-600 text-sm">
+                Ketidakteraturan bangunan, tingkat kepadatan bangunan yang tinggi,
+                dan kualitas bangunan yang tidak memenuhi syarat
+              </p>
             </div>
-          </div>
-
-          {/* Kriteria Kumuh */}
-          <div className="mb-8">
-            <h3 className="text-xl font-semibold text-gray-900 mb-4">
-              Kriteria Kawasan Kumuh
-            </h3>
-            <div className="space-y-4">
-              <div className="bg-yellow-50 rounded-lg p-4">
-                <h4 className="font-medium text-gray-900 mb-2">1. Kondisi Bangunan</h4>
-                <p className="text-gray-600 text-sm">
-                  Bangunan tidak memenuhi standar teknis (struktur, material, ventilasi)
-                </p>
-              </div>
-              <div className="bg-yellow-50 rounded-lg p-4">
-                <h4 className="font-medium text-gray-900 mb-2">2. Infrastruktur</h4>
-                <p className="text-gray-600 text-sm">
-                  Keterbatasan akses jalan, air bersih, sanitasi, dan pengelolaan sampah
-                </p>
-              </div>
-              <div className="bg-yellow-50 rounded-lg p-4">
-                <h4 className="font-medium text-gray-900 mb-2">3. Kepadatan</h4>
-                <p className="text-gray-600 text-sm">
-                  Kepadatan bangunan tinggi dengan jarak antar bangunan tidak sesuai standar
-                </p>
-              </div>
-              <div className="bg-yellow-50 rounded-lg p-4">
-                <h4 className="font-medium text-gray-900 mb-2">4. Legalitas</h4>
-                <p className="text-gray-600 text-sm">
-                  Status lahan tidak jelas atau tidak sesuai dengan peruntukannya
-                </p>
-              </div>
+            <div className="bg-blue-50 rounded-lg p-4">
+              <h4 className="font-medium text-gray-900 mb-2">2. Jalan Lingkungan</h4>
+              <p className="text-gray-600 text-sm">
+                Jaringan jalan lingkungan yang tidak memadai berupa jalan lingkungan
+                yang tidak diperkeras
+              </p>
+            </div>
+            <div className="bg-yellow-50 rounded-lg p-4">
+              <h4 className="font-medium text-gray-900 mb-2">3. Drainase Lingkungan</h4>
+              <p className="text-gray-600 text-sm">
+                Drainase lingkungan yang tidak memadai berupa tidak tersedianya
+                drainase atau kondisi drainase tidak memenuhi syarat teknis
+              </p>
+            </div>
+            <div className="bg-green-50 rounded-lg p-4">
+              <h4 className="font-medium text-gray-900 mb-2">4. Penyediaan Air Minum</h4>
+              <p className="text-gray-600 text-sm">
+                Keterbatasan akses aman terhadap air minum berupa tidak terpenuhinya
+                akses air minum yang aman
+              </p>
+            </div>
+            <div className="bg-purple-50 rounded-lg p-4">
+              <h4 className="font-medium text-gray-900 mb-2">5. Pengelolaan Air Limbah</h4>
+              <p className="text-gray-600 text-sm">
+                Pengelolaan air limbah yang tidak memadai berupa sistem pengelolaan
+                air limbah yang tidak sesuai standar teknis
+              </p>
+            </div>
+            <div className="bg-orange-50 rounded-lg p-4">
+              <h4 className="font-medium text-gray-900 mb-2">6. Pengelolaan Persampahan</h4>
+              <p className="text-gray-600 text-sm">
+                Pengelolaan persampahan yang tidak memadai berupa sistem pengelolaan
+                persampahan yang tidak sesuai standar teknis
+              </p>
+            </div>
+            <div className="bg-pink-50 rounded-lg p-4">
+              <h4 className="font-medium text-gray-900 mb-2">7. Proteksi Kebakaran</h4>
+              <p className="text-gray-600 text-sm">
+                Ketidakmampuan dalam mencegah bahaya kebakaran berupa keterbatasan
+                sarana dan prasarana proteksi kebakaran
+              </p>
             </div>
           </div>
 
           {/* Program Intervensi */}
-          <div className="mb-8">
+          <div className="mt-8">
             <h3 className="text-xl font-semibold text-gray-900 mb-4">
               Program Intervensi
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <div className="text-center">
-                <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                  <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                  </svg>
-                </div>
-                <h4 className="font-medium text-gray-900 mb-2">Perbaikan Hunian</h4>
-                <p className="text-gray-600 text-sm">Rehabilitasi dan renovasi rumah tidak layak huni</p>
+              <div className="bg-red-50 rounded-lg p-4">
+                <h4 className="font-medium text-gray-900 mb-2">Infrastruktur Dasar</h4>
+                <p className="text-gray-600 text-sm">
+                  Pembangunan jalan lingkungan, drainase, sanitasi, dan utilitas dasar
+                </p>
               </div>
-              <div className="text-center">
-                <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                  <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
-                  </svg>
-                </div>
-                <h4 className="font-medium text-gray-900 mb-2">Infrastruktur</h4>
-                <p className="text-gray-600 text-sm">Pembangunan jalan, drainase, air bersih, sanitasi</p>
+              <div className="bg-blue-50 rounded-lg p-4">
+                <h4 className="font-medium text-gray-900 mb-2">Penataan Hunian</h4>
+                <p className="text-gray-600 text-sm">
+                  Rehabilitasi dan pembangunan rumah layak huni bagi masyarakat
+                </p>
               </div>
-              <div className="text-center">
-                <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                  <svg className="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                  </svg>
-                </div>
-                <h4 className="font-medium text-gray-900 mb-2">Pemberdayaan</h4>
-                <p className="text-gray-600 text-sm">Pelatihan keterampilan dan pengembangan ekonomi</p>
+              <div className="bg-green-50 rounded-lg p-4">
+                <h4 className="font-medium text-gray-900 mb-2">Pemberdayaan Ekonomi</h4>
+                <p className="text-gray-600 text-sm">
+                  Program pelatihan keterampilan dan pengembangan ekonomi masyarakat
+                </p>
               </div>
             </div>
           </div>
 
-          {/* Lokasi Kumuh */}
-          <div className="bg-orange-50 rounded-lg p-6">
+          {/* Data Sebaran */}
+          <div className="mt-8 bg-orange-50 rounded-lg p-6">
             <h3 className="text-xl font-semibold text-gray-900 mb-4">
               Sebaran Kawasan Kumuh di Sumbar
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <h4 className="font-medium text-gray-900 mb-2">Kota Padang</h4>
-                <ul className="text-gray-600 text-sm space-y-1">
-                  <li>• Kelurahan Air Tawar - 25 Ha</li>
-                  <li>• Kelurahan Kampung Pondok - 18 Ha</li>
-                  <li>• Kelurahan Lambung Bukit - 15 Ha</li>
-                </ul>
+                <p className="text-gray-600 text-sm mb-2">Total: 1.247,32 Ha</p>
+                <p className="text-gray-600 text-sm">21 lokasi kawasan kumuh tersebar di berbagai kecamatan</p>
               </div>
               <div>
                 <h4 className="font-medium text-gray-900 mb-2">Kota Bukittinggi</h4>
-                <ul className="text-gray-600 text-sm space-y-1">
-                  <li>• Kelurahan Aur Kuning - 12 Ha</li>
-                  <li>• Kelurahan Benteng - 10 Ha</li>
-                  <li>• Kelurahan Guguk Panjang - 8 Ha</li>
-                </ul>
+                <p className="text-gray-600 text-sm mb-2">Total: 89,14 Ha</p>
+                <p className="text-gray-600 text-sm">8 lokasi kawasan kumuh di pusat kota</p>
+              </div>
+              <div>
+                <h4 className="font-medium text-gray-900 mb-2">Kota Payakumbuh</h4>
+                <p className="text-gray-600 text-sm mb-2">Total: 76,85 Ha</p>
+                <p className="text-gray-600 text-sm">5 lokasi kawasan kumuh</p>
+              </div>
+              <div>
+                <h4 className="font-medium text-gray-900 mb-2">Kabupaten Lainnya</h4>
+                <p className="text-gray-600 text-sm mb-2">Total: 523,69 Ha</p>
+                <p className="text-gray-600 text-sm">Tersebar di 19 kabupaten</p>
               </div>
             </div>
           </div>
@@ -163,33 +207,34 @@ export default function KumuhPage() {
             Target Program 2024
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="text-center">
-              <div className="text-3xl font-bold text-red-600 mb-2">150 Ha</div>
-              <p className="text-gray-600">Kawasan kumuh tertangani</p>
+            <div className="text-center bg-red-50 rounded-lg p-6">
+              <div className="text-3xl font-bold text-red-600 mb-2">15</div>
+              <p className="text-gray-600">Kawasan Kumuh Ditangani</p>
             </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-blue-600 mb-2">2.000</div>
-              <p className="text-gray-600">Rumah yang diperbaiki</p>
+            <div className="text-center bg-blue-50 rounded-lg p-6">
+              <div className="text-3xl font-bold text-blue-600 mb-2">850</div>
+              <p className="text-gray-600">Keluarga Penerima Manfaat</p>
             </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-green-600 mb-2">10.000</div>
-              <p className="text-gray-600">Jiwa terlayani</p>
+            <div className="text-center bg-green-50 rounded-lg p-6">
+              <div className="text-3xl font-bold text-green-600 mb-2">425</div>
+              <p className="text-gray-600">Hektar Kawasan Diperbaiki</p>
             </div>
           </div>
         </div>
 
-        {/* Contact Info */}
+        {/* Contact Information */}
         <div className="bg-white rounded-lg shadow-sm p-8">
           <h3 className="text-2xl font-semibold text-gray-900 mb-4">
             Informasi Lebih Lanjut
           </h3>
           <p className="text-gray-600 mb-4">
-            Untuk informasi lebih lanjut mengenai Program Penanganan Kumuh, silakan hubungi:
+            Untuk informasi lebih lanjut mengenai program penataan kawasan kumuh,
+            silakan hubungi:
           </p>
-          <div className="space-y-2 text-gray-600">
-            <p><span className="font-medium">Bidang Kawasan Permukiman</span></p>
-            <p><span className="font-medium">Telp:</span> (0751) 123457</p>
-            <p><span className="font-medium">Email:</span> kawasan@perkimtan.sumbarprov.go.id</p>
+          <div className="bg-gray-50 rounded-lg p-4">
+            <p className="text-gray-800 font-medium">Bidang Penataan Bangunan dan Lingkungan</p>
+            <p className="text-gray-600">Dinas Perumahan, Kawasan Permukiman dan Pertanahan Sumbar</p>
+            <p className="text-gray-600">Telp: (0751) 123456 | Email: kumuh@perkimtan.sumbar.go.id</p>
           </div>
         </div>
       </div>

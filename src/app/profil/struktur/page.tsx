@@ -1,17 +1,31 @@
-import { Metadata } from 'next'
+'use client'
+
 import { strukturOrganisasi, dinasProfile } from '@/lib/data'
 import Image from 'next/image'
-
-export const metadata: Metadata = {
-  title: 'Struktur Organisasi | Dinas Perkimtan Sumbar',
-  description: 'Struktur organisasi Dinas Perumahan, Kawasan Permukiman dan Pertanahan Sumatera Barat'
-}
+import { useState, useEffect } from 'react'
 
 export default function StrukturPage() {
+  const [selectedPejabat, setSelectedPejabat] = useState<any>(null)
+  const [showModal, setShowModal] = useState(false)
+
+  useEffect(() => {
+    document.title = 'Struktur Organisasi | Dinas Perkimtan Sumbar'
+  }, [])
+  
   const organogramData = {
     kepala: strukturOrganisasi.find(p => p.jabatan === "Kepala Dinas"),
     sekretaris: strukturOrganisasi.find(p => p.jabatan === "Sekretaris"),
     kabid: strukturOrganisasi.filter(p => p.jabatan.includes("Kabid"))
+  }
+
+  const openModal = (pejabat: any) => {
+    setSelectedPejabat(pejabat)
+    setShowModal(true)
+  }
+
+  const closeModal = () => {
+    setShowModal(false)
+    setSelectedPejabat(null)
   }
 
   const tugasFungsi = [
@@ -61,6 +75,16 @@ export default function StrukturPage() {
       ]
     }
   ]
+
+  const [selectedJabatan, setSelectedJabatan] = useState<string | null>(null)
+
+  const handleMouseEnter = (jabatan: string) => {
+    setSelectedJabatan(jabatan)
+  }
+
+  const handleMouseLeave = () => {
+    setSelectedJabatan(null)
+  }
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -141,7 +165,7 @@ export default function StrukturPage() {
             {/* Kabid */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {organogramData.kabid?.map((kabid, index) => (
-                <div key={index} className="bg-purple-600 text-white rounded-lg p-6 text-center">
+                <div key={index} className="bg-purple-600 text-white rounded-lg p-6 text-center group">
                   <div className="w-16 h-16 bg-white rounded-full mx-auto mb-4 flex items-center justify-center">
                     <Image
                       src="/app/assets/img/logo-perkimtan.png"
@@ -154,6 +178,17 @@ export default function StrukturPage() {
                   <h3 className="font-bold text-lg">{kabid.jabatan}</h3>
                   <p className="text-purple-100 text-sm">{kabid.nama}</p>
                   <p className="text-purple-200 text-xs">NIP: {kabid.nip}</p>
+
+                  {/* Tooltip */}
+                  <div className={`absolute left-1/2 transform -translate-x-1/2 mt-2 w-48 bg-gray-800 text-white text-sm rounded-lg p-2 opacity-0 transition-opacity duration-300 pointer-events-none group-hover:opacity-100`}>
+                    {selectedJabatan === kabid.jabatan ? (
+                      <>
+                        <div className="font-semibold">{kabid.jabatan}</div>
+                        <div className="mt-1">{kabid.nama}</div>
+                        <div className="text-gray-400">{kabid.nip}</div>
+                      </>
+                    ) : null}
+                  </div>
                 </div>
               ))}
             </div>
@@ -203,6 +238,69 @@ export default function StrukturPage() {
           </div>
         </div>
       </section>
+
+      {/* Modal Detail Pejabat */}
+      {showModal && selectedPejabat && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
+          <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full p-6 transform transition-all duration-300 scale-100">
+            <div className="flex justify-between items-start mb-4">
+              <h3 className="text-xl font-bold text-gray-900">Detail Pejabat</h3>
+              <button 
+                onClick={closeModal}
+                className="text-gray-400 hover:text-gray-600 transition-colors"
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+            
+            <div className="text-center mb-6">
+              <div className="w-20 h-20 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-2xl font-bold text-white">
+                  {selectedPejabat.nama.split(' ').map((n: string) => n[0]).join('').slice(0, 2)}
+                </span>
+              </div>
+              <h4 className="text-lg font-semibold text-gray-900">{selectedPejabat.nama}</h4>
+              <p className="text-blue-600 font-medium">{selectedPejabat.jabatan}</p>
+            </div>
+
+            <div className="space-y-4">
+              <div>
+                <h5 className="font-semibold text-gray-900 mb-2">Informasi</h5>
+                <div className="bg-gray-50 rounded-lg p-3 space-y-2">
+                  <div className="flex justify-between">
+                    <span className="text-gray-600">NIP:</span>
+                    <span className="font-medium">{selectedPejabat.nip || 'N/A'}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-gray-600">Pendidikan:</span>
+                    <span className="font-medium">{selectedPejabat.pendidikan || 'N/A'}</span>
+                  </div>
+                </div>
+              </div>
+              
+              <div>
+                <h5 className="font-semibold text-gray-900 mb-2">Kontak</h5>
+                <div className="bg-gray-50 rounded-lg p-3">
+                  <p className="text-gray-600 text-sm">
+                    Untuk informasi lebih lanjut, hubungi sekretariat dinas.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-6">
+              <button 
+                onClick={closeModal}
+                className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200"
+              >
+                Tutup
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   )
 }

@@ -48,23 +48,21 @@ export default function HonorerPage() {
   const getBidangColor = (bidang: string) => {
     switch (bidang) {
       case 'Perumahan':
-        return { bg: 'bg-blue-100', text: 'text-blue-700', border: 'border-blue-200' }
+        return 'bg-blue-500'
       case 'Kawasan Permukiman':
-        return { bg: 'bg-green-100', text: 'text-green-700', border: 'border-green-200' }
+        return 'bg-green-500'
       case 'Pertanahan':
-        return { bg: 'bg-orange-100', text: 'text-orange-700', border: 'border-orange-200' }
+        return 'bg-orange-500'
       case 'Sekretariat':
-        return { bg: 'bg-purple-100', text: 'text-purple-700', border: 'border-purple-200' }
+        return 'bg-purple-500'
       default:
-        return { bg: 'bg-gray-100', text: 'text-gray-700', border: 'border-gray-200' }
+        return 'bg-gray-500'
     }
   }
 
   const filteredTenagaHonorer = tenagaHonorer
     .filter(honorer => {
-      const matchesNama = honorer.nama.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         honorer.posisi.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         honorer.pendidikan.toLowerCase().includes(searchTerm.toLowerCase())
+      const matchesNama = honorer.nama.toLowerCase().includes(searchTerm.toLowerCase())
       const matchesBidang = selectedBidang ? honorer.bidang === selectedBidang : true
       return matchesNama && matchesBidang
     })
@@ -77,7 +75,7 @@ export default function HonorerPage() {
         case 'masa_kerja':
           const yearA = parseInt(a.masa_kerja.split(' ')[0])
           const yearB = parseInt(b.masa_kerja.split(' ')[0])
-          return yearB - yearA
+          return yearB - yearA // Descending
         default:
           return 0
       }
@@ -118,6 +116,8 @@ export default function HonorerPage() {
             </div>
           </div>
         </div>
+
+        <div className="max-w-6xl mx-auto px-4 py-10">
 
         <div className="max-w-6xl mx-auto px-4 py-10">
           {/* Controls Section */}
@@ -265,122 +265,160 @@ export default function HonorerPage() {
             </div>
           </div>
 
-          {/* Tenaga Honorer List */}
-          <div className={viewMode === 'grid' ? 'grid md:grid-cols-2 gap-6' : 'space-y-4'}>
-            {filteredTenagaHonorer.map((honorer, index) => {
-              const colors = getBidangColor(honorer.bidang)
-              
-              if (viewMode === 'grid') {
-                return (
-                  <div key={index} className="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow p-6">
-                    <div className="flex items-start space-x-4">
-                      <div className={`w-12 h-12 ${colors.bg} rounded-full flex items-center justify-center flex-shrink-0`}>
-                        <svg className={`w-6 h-6 ${colors.text}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                        </svg>
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <div className="flex items-start justify-between mb-2">
-                          <h3 className="text-lg font-semibold text-gray-900 truncate">{honorer.nama}</h3>
-                          <span className={`${colors.bg} ${colors.text} text-xs font-medium px-2 py-1 rounded-full border ${colors.border} ml-2 flex-shrink-0`}>
-                            {honorer.bidang}
-                          </span>
-                        </div>
-                        <p className="text-gray-600 text-sm mb-2">{honorer.posisi}</p>
-                        <div className="space-y-2">
-                          <div className="bg-gray-50 rounded px-3 py-2">
-                            <p className="text-gray-700 text-sm">Pendidikan: {honorer.pendidikan}</p>
-                          </div>
-                          <div className="bg-gray-50 rounded px-3 py-2">
-                            <p className="text-gray-700 text-sm">Masa Kerja: {honorer.masa_kerja}</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                )
-              } else {
-                return (
-                  <div key={index} className="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow p-4">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center space-x-4 flex-1 min-w-0">
-                        <div className={`w-10 h-10 ${colors.bg} rounded-full flex items-center justify-center flex-shrink-0`}>
-                          <svg className={`w-5 h-5 ${colors.text}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                          </svg>
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <h3 className="font-semibold text-gray-900 truncate">{honorer.nama}</h3>
-                          <p className="text-sm text-gray-600 truncate">{honorer.posisi}</p>
-                          <div className="text-xs text-gray-500 mt-1">
-                            {honorer.pendidikan} • {honorer.masa_kerja}
-                          </div>
-                        </div>
-                      </div>
-                      <span className={`${colors.bg} ${colors.text} text-xs font-medium px-2 py-1 rounded-full border ${colors.border} ml-4 flex-shrink-0`}>
-                        {honorer.bidang}
-                      </span>
-                    </div>
-                  </div>
-                )
-              }
-            })}
-          </div>
-
-          {/* No Results */}
-          {filteredTenagaHonorer.length === 0 && (
-            <div className="text-center py-12">
-              <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg className="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2-2v2m8 0H8m8 0v2a2 2 0 002 2v8a2 2 0 01-2 2H8a2 2 0 01-2-2v-8a2 2 0 012-2V8" />
+              {/* Sort By */}
+              <div className="relative">
+                <select
+                  value={sortBy}
+                  onChange={(e) => setSortBy(e.target.value as 'nama' | 'bidang' | 'masa_kerja')}
+                  className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-orange-400 focus:border-orange-400 text-gray-800 transition-all duration-200 ease-in-out appearance-none bg-white"
+                >
+                  <option value="nama">Urutkan: Nama (A-Z)</option>
+                  <option value="bidang">Urutkan: Bidang</option>
+                  <option value="masa_kerja">Urutkan: Masa Kerja</option>
+                </select>
+                <svg className="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                 </svg>
               </div>
-              <h3 className="text-lg font-medium text-gray-900 mb-2">Tidak ada tenaga honorer ditemukan</h3>
-              <p className="text-gray-600 mb-4">Coba ubah kriteria pencarian atau filter Anda</p>
-              <button
-                onClick={() => {
-                  setSearchTerm('')
-                  setSelectedBidang(null)
-                }}
-                className="text-orange-600 hover:text-orange-700 font-medium transition-colors duration-100 ease-out hover:underline"
-              >
-                Reset Filter
-              </button>
-            </div>
-          )}
 
-          {/* Summary Stats */}
-          <div className="mt-12 bg-white rounded-lg shadow-sm p-6">
-            <h3 className="text-xl font-semibold text-gray-900 mb-6 text-center">Ringkasan Tenaga Honorer</h3>
-            <div className="grid md:grid-cols-4 gap-4">
-              <div className="text-center p-4 bg-blue-50 rounded-lg border border-blue-100">
-                <div className="text-2xl font-bold text-blue-600 mb-1">
-                  {tenagaHonorer.filter(h => h.bidang === 'Perumahan').length}
-                </div>
-                <div className="text-blue-700 text-sm">Perumahan</div>
-              </div>
-              <div className="text-center p-4 bg-green-50 rounded-lg border border-green-100">
-                <div className="text-2xl font-bold text-green-600 mb-1">
-                  {tenagaHonorer.filter(h => h.bidang === 'Kawasan Permukiman').length}
-                </div>
-                <div className="text-green-700 text-sm">Kawasan</div>
-              </div>
-              <div className="text-center p-4 bg-orange-50 rounded-lg border border-orange-100">
-                <div className="text-2xl font-bold text-orange-600 mb-1">
-                  {tenagaHonorer.filter(h => h.bidang === 'Pertanahan').length}
-                </div>
-                <div className="text-orange-700 text-sm">Pertanahan</div>
-              </div>
-              <div className="text-center p-4 bg-purple-50 rounded-lg border border-purple-100">
-                <div className="text-2xl font-bold text-purple-600 mb-1">
-                  {tenagaHonorer.filter(h => h.bidang === 'Sekretariat').length}
-                </div>
-                <div className="text-purple-700 text-sm">Sekretariat</div>
+              {/* Results Info */}
+              <div className="flex items-center justify-between">
+                <span className="text-sm text-gray-700">
+                  {filteredTenagaHonorer.length} dari {tenagaHonorer.length} tenaga
+                </span>
+                {(searchTerm || selectedBidang) && (
+                  <button
+                    onClick={() => {
+                      setSearchTerm('')
+                      setSelectedBidang(null)
+                    }}
+                    className="text-orange-600 hover:text-orange-700 font-medium text-sm transition-colors duration-200 ease-in-out"
+                  >
+                    Reset
+                  </button>
+                )}
               </div>
             </div>
           </div>
         </div>
+
+        {/* Stats */}
+        <div className="grid md:grid-cols-4 gap-6 mb-12">
+          <div className="bg-blue-500/10 backdrop-blur-sm rounded-xl p-6 text-center border border-blue-200">
+            <div className="text-3xl font-bold text-blue-600 mb-2">2</div>
+            <div className="text-blue-700 font-medium">Perumahan</div>
+          </div>
+          <div className="bg-green-500/10 backdrop-blur-sm rounded-xl p-6 text-center border border-green-200">
+            <div className="text-3xl font-bold text-green-600 mb-2">2</div>
+            <div className="text-green-700 font-medium">Kawasan</div>
+          </div>
+          <div className="bg-orange-500/10 backdrop-blur-sm rounded-xl p-6 text-center border border-orange-200">
+            <div className="text-3xl font-bold text-orange-600 mb-2">2</div>
+            <div className="text-orange-700 font-medium">Pertanahan</div>
+          </div>
+          <div className="bg-purple-500/10 backdrop-blur-sm rounded-xl p-6 text-center border border-purple-200">
+            <div className="text-3xl font-bold text-purple-600 mb-2">2</div>
+            <div className="text-purple-700 font-medium">Sekretariat</div>
+          </div>
+        </div>
+
+        {/* Tenaga Honorer Grid */}
+        <div className="grid lg:grid-cols-2 gap-6 mb-12">
+          {filteredTenagaHonorer.map((honorer, index) => (
+            <div key={index} className="bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-300 ease-in-out p-6 border border-gray-100 hover:border-gray-200">
+              <div className="flex items-start space-x-4">
+                {/* Avatar */}
+                <div className="w-16 h-16 bg-orange-50 rounded-full flex items-center justify-center border-2 border-orange-100">
+                  <svg className="w-8 h-8 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                  </svg>
+                </div>
+
+                {/* Info */}
+                <div className="flex-1">
+                  <div className="flex items-start justify-between mb-3">
+                    <div>
+                      <h3 className="text-lg font-bold text-gray-800">
+                        {honorer.nama}
+                      </h3>
+                      <p className="text-gray-600 font-medium">{honorer.posisi}</p>
+                    </div>
+                    <span className={`${getBidangColor(honorer.bidang)} text-white text-xs font-semibold px-3 py-1 rounded-full`}>
+                      {honorer.bidang}
+                    </span>
+                  </div>
+                  
+                  <div className="space-y-2">
+                    <div className="bg-gray-50 rounded-lg p-3 border border-gray-100">
+                      <div className="flex justify-between text-sm">
+                        <span className="text-gray-600">Pendidikan:</span>
+                        <span className="font-medium text-gray-800">{honorer.pendidikan}</span>
+                      </div>
+                    </div>
+                    <div className="bg-orange-50 rounded-lg p-3 border border-orange-100">
+                      <div className="flex justify-between text-sm">
+                        <span className="text-gray-600">Masa Kerja:</span>
+                        <span className="font-medium text-orange-700">{honorer.masa_kerja}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Appreciation Section */}
+        <div className="bg-gradient-to-r from-orange-600 to-orange-700 rounded-2xl p-8 text-white">
+          <div className="text-center mb-8">
+            <h3 className="text-2xl font-bold mb-4">Apresiasi Kerja</h3>
+            <p className="text-orange-100 max-w-2xl mx-auto">
+              Kami mengapresiasi dedikasi dan kontribusi para tenaga honorer yang telah mendukung 
+              kelancaran operasional dinas dengan penuh komitmen.
+            </p>
+          </div>
+          
+          <div className="grid md:grid-cols-4 gap-6">
+            <div className="text-center">
+              <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-3">
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+              </div>
+              <div className="text-2xl font-bold mb-1">8</div>
+              <div className="text-orange-100 text-sm">Total Tenaga</div>
+            </div>
+            <div className="text-center">
+              <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-3">
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1" />
+                </svg>
+              </div>
+              <div className="text-2xl font-bold mb-1">4</div>
+              <div className="text-orange-100 text-sm">Bidang Kerja</div>
+            </div>
+            <div className="text-center">
+              <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-3">
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <div className="text-2xl font-bold mb-1">100%</div>
+              <div className="text-orange-100 text-sm">Dedikasi</div>
+            </div>
+            <div className="text-center">
+              <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-3">
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                </svg>
+              </div>
+              <div className="text-2xl font-bold mb-1">24/7</div>
+              <div className="text-orange-100 text-sm">Siap Melayani</div>
+            </div>
+          </div>
+        </div>
       </div>
+    </div>
     </>
   )
 }
