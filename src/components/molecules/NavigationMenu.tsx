@@ -105,9 +105,9 @@ export default function NavigationMenu({ className = '' }: NavigationMenuProps) 
         <Link
           key={item.href}
           href={item.href}
-          className={`px-3 py-2 rounded-lg font-medium transition-all duration-200 text-sm ${
+          className={`px-4 py-3 rounded-lg font-semibold transition-all duration-200 text-base ${
             pathname === item.href
-              ? 'text-blue-600 bg-blue-50'
+              ? 'text-blue-600 bg-blue-50 shadow-sm'
               : 'text-gray-700 hover:text-blue-600 hover:bg-gray-50'
           }`}
         >
@@ -123,21 +123,21 @@ export default function NavigationMenu({ className = '' }: NavigationMenuProps) 
           onMouseEnter={() => handleMouseEnter(item.label)}
           onMouseLeave={handleMouseLeave}
         >
-          <button className="px-3 py-2 rounded-lg font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition-all duration-200 flex items-center text-sm">
+          <button className="px-4 py-3 rounded-lg font-semibold text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition-all duration-200 flex items-center text-base">
             {item.label}
-            <svg className="w-3.5 h-3.5 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-4 h-4 ml-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
             </svg>
           </button>
 
           {activeDropdown === item.label && item.children && (
-            <div className="absolute top-full left-0 mt-1 bg-white rounded-xl shadow-xl border border-gray-100 py-2 min-w-[220px] z-50">
+            <div className="absolute top-full left-0 mt-2 bg-white rounded-xl shadow-2xl border border-gray-100 py-3 min-w-[240px] z-[9995]">
               {item.children.map((child) => (
                 <div key={child.label} className="relative">
                   {child.href ? (
                     <Link
                       href={child.href}
-                      className="block px-3 py-2.5 text-gray-700 hover:text-blue-600 hover:bg-blue-50 transition-colors text-sm"
+                      className="block px-4 py-3 text-gray-700 hover:text-blue-600 hover:bg-blue-50 transition-colors text-base font-medium border-l-4 border-transparent hover:border-blue-600"
                     >
                       {child.label}
                     </Link>
@@ -146,20 +146,20 @@ export default function NavigationMenu({ className = '' }: NavigationMenuProps) 
                       className="relative"
                       onMouseEnter={() => handleSubMouseEnter(child.label)}
                     >
-                      <button className="w-full text-left px-3 py-2.5 text-gray-700 hover:text-blue-600 hover:bg-blue-50 transition-colors flex items-center justify-between text-sm">
+                      <button className="w-full text-left px-4 py-3 text-gray-700 hover:text-blue-600 hover:bg-blue-50 transition-colors flex items-center justify-between text-base font-medium border-l-4 border-transparent hover:border-blue-600">
                         {child.label}
-                        <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                         </svg>
                       </button>
 
                       {activeSubDropdown === child.label && child.children && (
-                        <div className="absolute left-full top-0 ml-1 bg-white rounded-xl shadow-xl border border-gray-100 py-2 min-w-[200px] z-50">
+                        <div className="absolute left-full top-0 ml-2 bg-white rounded-xl shadow-2xl border border-gray-100 py-3 min-w-[220px] z-[9996]">
                           {child.children.map((subChild) => (
                             <Link
                               key={subChild.href}
                               href={subChild.href!}
-                              className="block px-3 py-2.5 text-gray-700 hover:text-blue-600 hover:bg-blue-50 transition-colors text-sm"
+                              className="block px-4 py-3 text-gray-700 hover:text-blue-600 hover:bg-blue-50 transition-colors text-base font-medium border-l-4 border-transparent hover:border-blue-600"
                             >
                               {subChild.label}
                             </Link>
@@ -178,7 +178,7 @@ export default function NavigationMenu({ className = '' }: NavigationMenuProps) 
   }
 
   return (
-    <nav className={`hidden lg:flex items-center space-x-1 ${className}`}>
+    <nav className={`hidden lg:flex items-center space-x-2 ${className}`}>
       {navigationItems.map(renderNavigationItem)}
     </nav>
   )
