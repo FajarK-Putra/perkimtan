@@ -7,27 +7,31 @@ interface LogoProps {
 }
 
 const sizeClasses = {
-  sm: 'h-7',
-  md: 'h-8',
-  lg: 'h-10'
+  sm: 'h-8',
+  md: 'h-10',
+  lg: 'h-12'
 }
 
 export default function Logo({ className = '', size = 'md' }: LogoProps) {
   return (
-    <Link href="/" className={`flex items-center space-x-2 ${className}`}>
+    <Link href="/" className={`flex items-center space-x-3 ${className} group`}>
       <Image
         src="/app/assets/img/logo-perkimtan.png"
         alt="Logo Perkimtan"
-        width={40}
-        height={40}
-        className={`${sizeClasses[size]} w-auto`}
+        width={48}
+        height={48}
+        className={`${sizeClasses[size]} w-auto transition-transform duration-200 group-hover:scale-105`}
       />
       <div className="flex flex-col">
-        <span className="text-xs font-bold text-blue-900 leading-tight">
+        <span className={`font-bold text-blue-900 leading-tight ${
+          size === 'lg' ? 'text-base' : size === 'md' ? 'text-sm' : 'text-xs'
+        }`}>
           PERKIMTAN
         </span>
-        <span className="text-xs text-blue-700 leading-tight">
-          SUMBAR
+        <span className={`text-blue-700 leading-tight ${
+          size === 'lg' ? 'text-sm' : size === 'md' ? 'text-xs' : 'text-xs'
+        }`}>
+          SUMATERA BARAT
         </span>
       </div>
     </Link>
