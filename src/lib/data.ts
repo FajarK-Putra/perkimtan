@@ -8,13 +8,11 @@ export const dinasProfile = {
   phone: "(0751) 7051234",
   email: "info@perkimtan.sumbarprov.go.id",
   website: "https://perkimtan.sumbarprov.go.id",
-  visi: "Terwujudnya Perumahan, Kawasan Permukiman dan Pertanahan yang Berkelanjutan dan Berkualitas di Sumatera Barat",
+  visi: "Mewujudkan Permukiman Layak Huni yang berkelanjutan dan Tata Kelola Pertanahan yang Berkeadilan",
   misi: [
-    "Meningkatkan kualitas dan kuantitas perumahan yang layak dan terjangkau",
-    "Mengembangkan kawasan permukiman yang tertata dan berkelanjutan",
-    "Meningkatkan kepastian hukum dan pengelolaan pertanahan",
-    "Memperkuat kelembagaan dan sumber daya aparatur",
-    "Meningkatkan pelayanan publik yang prima"
+    "Meningkatkan Tatakelola Organisasi Dinas Perumahan Rakyat, Kawasan Permukiman dan Pertanahan",
+    "Meningkatkan Kualitas Kawasan Permukiman",
+    "Meningkatkan Kualitas Perumahan"
   ]
 }
 

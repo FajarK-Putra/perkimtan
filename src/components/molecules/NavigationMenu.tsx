@@ -9,65 +9,49 @@ const navigationItems = [
   {
     label: 'Profil',
     children: [
-      { href: '/profil/tentang', label: 'Tentang Kami' },
       { href: '/profil/visi-misi', label: 'Visi & Misi' },
-      { href: '/profil/struktur', label: 'Struktur Organisasi' },
-      { href: '/profil/program-kerja', label: 'Program Kerja' },
-      {
-        label: 'Kepegawaian',
-        children: [
-          { href: '/profil/kepegawaian/pejabat', label: 'Pejabat Struktural' },
-          { href: '/profil/kepegawaian/staff', label: 'Staff' },
-          { href: '/profil/kepegawaian/honorer', label: 'Tenaga Honorer' }
-        ]
-      }
+      { href: '/profil/sejarah-singkat', label: 'Sejarah Singkat' },
+      { href: '/profil/struktur-organisasi', label: 'Struktur Organisasi' },
+      { href: '/profil/tugas-dan-fungsi', label: 'Tugas dan Fungsi' },
+      { href: '/profil/pejabat-struktural', label: 'Profil Pejabat Struktural' }
     ]
   },
-  {
-    label: 'Layanan',
-    children: [
-      {
-        label: 'Perumahan',
-        children: [
-          { href: '/layanan/perumahan/perizinan', label: 'Perizinan Perumahan' },
-          { href: '/layanan/perumahan/rusunawa', label: 'Rumah Susun Sederhana' },
-          { href: '/layanan/perumahan/bsps', label: 'Program BSPS' },
-          { href: '/layanan/perumahan/flpp', label: 'Fasilitas FLPP' }
-        ]
-      },
-      {
-        label: 'Kawasan Permukiman',
-        children: [
-          { href: '/layanan/kawasan/penataan', label: 'Penataan Kawasan' },
-          { href: '/layanan/kawasan/kumuh', label: 'Penanganan Kumuh' },
-          { href: '/layanan/kawasan/infrastruktur', label: 'Infrastruktur' },
-          { href: '/layanan/kawasan/kotaku', label: 'Program KOTAKU' }
-        ]
-      },
-      {
-        label: 'Pertanahan',
-        children: [
-          { href: '/layanan/pertanahan/sertifikasi', label: 'Sertifikasi Tanah' },
-          { href: '/layanan/pertanahan/legalisasi', label: 'Legalisasi Aset' },
-          { href: '/layanan/pertanahan/sengketa', label: 'Penyelesaian Sengketa' },
-          { href: '/layanan/pertanahan/konsultasi', label: 'Konsultasi Pertanahan' }
-        ]
-      },
-      { href: '/layanan/pengaduan', label: 'Pengaduan Masyarakat' }
-    ]
-  },
-  { href: '/berita', label: 'Berita' },
   {
     label: 'Informasi',
     children: [
-      { href: '/informasi/pengumuman', label: 'Pengumuman' },
-      { href: '/informasi/peraturan', label: 'Peraturan' },
-      { href: '/informasi/dokumen', label: 'Dokumen Publik' },
-      { href: '/informasi/statistik', label: 'Data Statistik' }
+      { href: '/informasi/berita', label: 'Berita' },
+      { href: '/informasi/foto', label: 'Foto' },
+      { href: '/informasi/agenda', label: 'Agenda' },
+      { href: '/informasi/infografis', label: 'Infografis' },
+      { href: '/informasi/video', label: 'Video' }
     ]
   },
-  { href: '/galeri', label: 'Galeri' },
-  { href: '/kontak', label: 'Kontak' }
+  { href: '/pengumuman', label: 'Pengumuman' },
+  {
+    label: 'PPID',
+    children: [
+      { href: '/PPID/profil-ppid', label: 'Profil PPID' },
+      { href: '/PPID/tugas-dan-fungsi', label: 'Tugas dan Fungsi PPID' },
+      { href: '/PPID/struktur-organisasi', label: 'Struktur Organisasi PPID' },
+      { href: '/PPID/visi-misi', label: 'Visi Misi PPID' },
+      { href: '/PPID/informasi/berkala', label: 'Informasi Berkala' },
+      { href: '/PPID/informasi/setiap-saat', label: 'Informasi Tersedia Setiap Saat' },
+      { href: '/PPID/informasi/serta-merta', label: 'Informasi Serta Merta' },
+      { href: '/PPID/informasi/dikecualikan', label: 'Informasi Dikecualikan' },
+      { href: '/PPID/regulasi/sop', label: 'Regulasi dan Standar Operasional Prosedur' },
+      { href: '/PPID/regulasi/informasi', label: 'Regulasi Informasi' },
+      { href: '/PPID/permohonan/tata-cara', label: 'Tata Cara Permohonan Informasi' },
+      { href: '/PPID/permohonan/keberatan', label: 'Tata Cara Permohonan Keberatan' },
+      { href: '/PPID/permohonan/sengketa', label: 'Tata Cara Pengajuan Sengketa' },
+      { href: '/PPID/informasi/daftar-2025', label: 'Daftar Informasi Publik 2025' },
+      { href: '/PPID/permohonan/online', label: 'Keberatan Permohonan Online' },
+      { href: '/PPID/laporan/rencana-pengadaan', label: 'Rencana Umum Pengadaan' },
+      { href: '/PPID/laporan/keuangan', label: 'Laporan Keuangan' },
+      { href: '/PPID/laporan/kinerja-2024', label: 'Laporan Kinerja 2024' }
+    ]
+  },
+  { href: '/layanan', label: 'Informasi Layanan' },
+  { href: '/lapor', label: 'Lapor' }
 ]
 
 interface NavigationMenuProps {
@@ -131,13 +115,13 @@ export default function NavigationMenu({ className = '' }: NavigationMenuProps) 
           </button>
 
           {activeDropdown === item.label && item.children && (
-            <div className="absolute top-full left-0 mt-2 bg-white rounded-xl shadow-2xl border border-gray-100 py-3 min-w-[240px] z-[9995]">
+            <div className={`absolute top-full left-0 mt-2 bg-white rounded-xl shadow-2xl border border-gray-100 py-3 ${item.label === 'PPID' ? 'grid grid-cols-2 gap-x-4 min-w-[480px]' : 'min-w-[240px]'} z-[9995]`}>
               {item.children.map((child) => (
                 <div key={child.label} className="relative">
                   {child.href ? (
                     <Link
                       href={child.href}
-                      className="block px-4 py-3 text-gray-700 hover:text-blue-600 hover:bg-blue-50 transition-colors text-base font-medium border-l-4 border-transparent hover:border-blue-600"
+                      className="block px-4 py-2 text-gray-700 hover:text-blue-600 hover:bg-blue-50 transition-colors text-sm font-medium border-l-4 border-transparent hover:border-blue-600"
                     >
                       {child.label}
                     </Link>
@@ -146,7 +130,7 @@ export default function NavigationMenu({ className = '' }: NavigationMenuProps) 
                       className="relative"
                       onMouseEnter={() => handleSubMouseEnter(child.label)}
                     >
-                      <button className="w-full text-left px-4 py-3 text-gray-700 hover:text-blue-600 hover:bg-blue-50 transition-colors flex items-center justify-between text-base font-medium border-l-4 border-transparent hover:border-blue-600">
+                      <button className="w-full text-left px-4 py-2 text-gray-700 hover:text-blue-600 hover:bg-blue-50 transition-colors flex items-center justify-between text-sm font-medium border-l-4 border-transparent hover:border-blue-600">
                         {child.label}
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
