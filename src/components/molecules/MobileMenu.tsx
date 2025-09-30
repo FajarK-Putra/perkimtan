@@ -12,65 +12,49 @@ const navigationItems = [
   {
     label: 'Profil',
     children: [
-      { href: '/profil/tentang', label: 'Tentang Kami' },
       { href: '/profil/visi-misi', label: 'Visi & Misi' },
-      { href: '/profil/struktur', label: 'Struktur Organisasi' },
-      { href: '/profil/program-kerja', label: 'Program Kerja' },
-      {
-        label: 'Kepegawaian',
-        children: [
-          { href: '/profil/kepegawaian/pejabat', label: 'Pejabat Struktural' },
-          { href: '/profil/kepegawaian/staff', label: 'Staff' },
-          { href: '/profil/kepegawaian/honorer', label: 'Tenaga Honorer' }
-        ]
-      }
+      { href: '/profil/sejarah-singkat', label: 'Sejarah Singkat' },
+      { href: '/profil/struktur-organisasi', label: 'Struktur Organisasi' },
+      { href: '/profil/tugas-dan-fungsi', label: 'Tugas dan Fungsi' },
+      { href: '/profil/pejabat-struktural', label: 'Profil Pejabat Struktural' }
     ]
   },
-  {
-    label: 'Layanan',
-    children: [
-      {
-        label: 'Perumahan',
-        children: [
-          { href: '/layanan/perumahan/perizinan', label: 'Perizinan Perumahan' },
-          { href: '/layanan/perumahan/rusunawa', label: 'Rumah Susun Sederhana' },
-          { href: '/layanan/perumahan/bsps', label: 'Program BSPS' },
-          { href: '/layanan/perumahan/flpp', label: 'Fasilitas FLPP' }
-        ]
-      },
-      {
-        label: 'Kawasan Permukiman',
-        children: [
-          { href: '/layanan/kawasan/penataan', label: 'Penataan Kawasan' },
-          { href: '/layanan/kawasan/kumuh', label: 'Penanganan Kumuh' },
-          { href: '/layanan/kawasan/infrastruktur', label: 'Infrastruktur' },
-          { href: '/layanan/kawasan/kotaku', label: 'Program KOTAKU' }
-        ]
-      },
-      {
-        label: 'Pertanahan',
-        children: [
-          { href: '/layanan/pertanahan/sertifikasi', label: 'Sertifikasi Tanah' },
-          { href: '/layanan/pertanahan/legalisasi', label: 'Legalisasi Aset' },
-          { href: '/layanan/pertanahan/sengketa', label: 'Penyelesaian Sengketa' },
-          { href: '/layanan/pertanahan/konsultasi', label: 'Konsultasi Pertanahan' }
-        ]
-      },
-      { href: '/layanan/pengaduan', label: 'Pengaduan Masyarakat' }
-    ]
-  },
-  { href: '/berita', label: 'Berita' },
   {
     label: 'Informasi',
     children: [
-      { href: '/informasi/pengumuman', label: 'Pengumuman' },
-      { href: '/informasi/peraturan', label: 'Peraturan' },
-      { href: '/informasi/dokumen', label: 'Dokumen Publik' },
-      { href: '/informasi/statistik', label: 'Data Statistik' }
+      { href: '/informasi/berita', label: 'Berita' },
+      { href: '/informasi/foto', label: 'Foto' },
+      { href: '/informasi/agenda', label: 'Agenda' },
+      { href: '/informasi/infografis', label: 'Infografis' },
+      { href: '/informasi/video', label: 'Video' }
     ]
   },
-  { href: '/galeri', label: 'Galeri' },
-  { href: '/kontak', label: 'Kontak' }
+  { href: '/pengumuman', label: 'Pengumuman' },
+  {
+    label: 'PPID',
+    children: [
+      { href: '/PPID/profil-ppid', label: 'Profil PPID' },
+      { href: '/PPID/tugas-dan-fungsi', label: 'Tugas dan Fungsi PPID' },
+      { href: '/PPID/struktur-organisasi', label: 'Struktur Organisasi PPID' },
+      { href: '/PPID/visi-misi', label: 'Visi Misi PPID' },
+      { href: '/PPID/informasi/berkala', label: 'Informasi Berkala' },
+      { href: '/PPID/informasi/setiap-saat', label: 'Informasi Tersedia Setiap Saat' },
+      { href: '/PPID/informasi/serta-merta', label: 'Informasi Serta Merta' },
+      { href: '/PPID/informasi/dikecualikan', label: 'Informasi Dikecualikan' },
+      { href: '/PPID/regulasi/sop', label: 'Regulasi dan Standar Operasional Prosedur' },
+      { href: '/PPID/regulasi/informasi', label: 'Regulasi Informasi' },
+      { href: '/PPID/permohonan/tata-cara', label: 'Tata Cara Permohonan Informasi' },
+      { href: '/PPID/permohonan/keberatan', label: 'Tata Cara Permohonan Keberatan' },
+      { href: '/PPID/permohonan/sengketa', label: 'Tata Cara Pengajuan Sengketa' },
+      { href: '/PPID/informasi/daftar-2025', label: 'Daftar Informasi Publik 2025' },
+      { href: '/PPID/permohonan/online', label: 'Keberatan Permohonan Online' },
+      { href: '/PPID/laporan/rencana-pengadaan', label: 'Rencana Umum Pengadaan' },
+      { href: '/PPID/laporan/keuangan', label: 'Laporan Keuangan' },
+      { href: '/PPID/laporan/kinerja-2024', label: 'Laporan Kinerja 2024' }
+    ]
+  },
+  { href: '/layanan', label: 'Informasi Layanan' },
+  { href: '/lapor', label: 'Lapor' }
 ]
 
 interface NavigationItem {

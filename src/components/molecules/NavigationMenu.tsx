@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useRef, useCallback, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
@@ -68,19 +68,80 @@ export default function NavigationMenu({ className = '' }: NavigationMenuProps) 
   const pathname = usePathname()
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null)
   const [activeSubDropdown, setActiveSubDropdown] = useState<string | null>(null)
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null)
+  const subTimeoutRef = useRef<NodeJS.Timeout | null>(null)
+  const lastActiveRef = useRef<string | null>(null)
 
-  const handleMouseEnter = (label: string) => {
+  const clearTimeouts = useCallback(() => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current)
+      timeoutRef.current = null
+    }
+    if (subTimeoutRef.current) {
+      clearTimeout(subTimeoutRef.current)
+      subTimeoutRef.current = null
+    }
+  }, [])
+
+  const handleMouseEnter = useCallback((label: string) => {
+    clearTimeouts()
+    
+    // Prevent duplicate dropdowns
+    if (lastActiveRef.current === label && activeDropdown === label) {
+      return
+    }
+    
+    // Close any other dropdown first
+    if (activeDropdown && activeDropdown !== label) {
+      setActiveDropdown(null)
+      setActiveSubDropdown(null)
+    }
+    
+    // Set new active dropdown
+    lastActiveRef.current = label
     setActiveDropdown(label)
-  }
+  }, [clearTimeouts, activeDropdown])
 
-  const handleMouseLeave = () => {
-    setActiveDropdown(null)
-    setActiveSubDropdown(null)
-  }
+  const handleMouseLeave = useCallback(() => {
+    timeoutRef.current = setTimeout(() => {
+      setActiveDropdown(null)
+      setActiveSubDropdown(null)
+      lastActiveRef.current = null
+    }, 200)
+  }, [])
 
-  const handleSubMouseEnter = (label: string) => {
+  const handleSubMouseEnter = useCallback((label: string) => {
+    clearTimeouts()
     setActiveSubDropdown(label)
-  }
+  }, [clearTimeouts])
+
+  const handleDropdownMouseEnter = useCallback(() => {
+    clearTimeouts()
+  }, [clearTimeouts])
+
+  const handleDropdownMouseLeave = useCallback(() => {
+    timeoutRef.current = setTimeout(() => {
+      setActiveDropdown(null)
+      setActiveSubDropdown(null)
+    }, 150)
+  }, [])
+
+  const handleItemClick = useCallback(() => {
+    // Delay closing to allow navigation
+    setTimeout(() => {
+      setActiveDropdown(null)
+      setActiveSubDropdown(null)
+      lastActiveRef.current = null
+    }, 100)
+  }, [])
+
+  // Cleanup on unmount
+  useEffect(() => {
+    return () => {
+      clearTimeouts()
+      lastActiveRef.current = null
+    }
+  }, [clearTimeouts])
 
   const renderNavigationItem = (item: NavigationItem) => {
     if (item.href) {
@@ -89,11 +150,19 @@ export default function NavigationMenu({ className = '' }: NavigationMenuProps) 
         <Link
           key={item.href}
           href={item.href}
-          className={`px-4 py-3 rounded-lg font-semibold transition-all duration-200 text-base ${
+          className={`block px-4 py-2 rounded-md font-medium transition-all duration-200 text-sm cursor-pointer navbar-menu-item ${
             pathname === item.href
-              ? 'text-blue-600 bg-blue-50 shadow-sm'
-              : 'text-gray-700 hover:text-blue-600 hover:bg-gray-50'
+              ? 'text-blue-600 bg-blue-50'
+              : 'text-gray-700 hover:text-blue-600 hover:bg-blue-50'
           }`}
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            textAlign: 'center',
+            minWidth: '90px',
+            whiteSpace: 'nowrap'
+          }}
         >
           {item.label}
         </Link>
@@ -102,26 +171,61 @@ export default function NavigationMenu({ className = '' }: NavigationMenuProps) 
       // Dropdown menu
       return (
         <div
-          key={item.label}
+          key={`dropdown-${item.label}`}
           className="relative"
           onMouseEnter={() => handleMouseEnter(item.label)}
           onMouseLeave={handleMouseLeave}
         >
-          <button className="px-4 py-3 rounded-lg font-semibold text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition-all duration-200 flex items-center text-base">
+          <button 
+            className="px-4 py-2 rounded-md font-medium text-gray-700 hover:text-blue-600 hover:bg-blue-50 transition-all duration-200 flex items-center justify-center text-sm cursor-pointer select-none navbar-menu-item"
+            style={{
+              minWidth: '90px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              whiteSpace: 'nowrap'
+            }}
+          >
             {item.label}
-            <svg className="w-4 h-4 ml-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
             </svg>
           </button>
 
-          {activeDropdown === item.label && item.children && (
-            <div className={`absolute top-full left-0 mt-2 bg-white rounded-xl shadow-2xl border border-gray-100 py-3 ${item.label === 'PPID' ? 'grid grid-cols-2 gap-x-4 min-w-[480px]' : 'min-w-[240px]'} z-[9995]`}>
+          {activeDropdown === item.label && item.children && item.children.length > 0 && (
+            <div 
+              key={`menu-${item.label}`}
+              className={`absolute top-full left-1/2 transform -translate-x-1/2 mt-1 bg-white rounded-lg shadow-xl border border-gray-200 py-4 dropdown-menu z-[9998] ${
+                item.label === 'PPID' 
+                  ? 'grid grid-cols-3 gap-4 w-[750px]' 
+                  : 'min-w-[200px]'
+              }`}
+              onMouseEnter={handleDropdownMouseEnter}
+              onMouseLeave={handleDropdownMouseLeave}
+              style={{
+                display: 'block',
+                visibility: 'visible',
+                opacity: '1',
+                backdropFilter: 'blur(8px)',
+                backgroundColor: 'rgba(255, 255, 255, 0.98)',
+                maxHeight: 'none',
+                overflow: 'visible'
+              }}
+            >
               {item.children.map((child) => (
                 <div key={child.label} className="relative">
                   {child.href ? (
                     <Link
                       href={child.href}
-                      className="block px-4 py-2 text-gray-700 hover:text-blue-600 hover:bg-blue-50 transition-colors text-sm font-medium border-l-4 border-transparent hover:border-blue-600"
+                      onClick={handleItemClick}
+                      className="block px-3 py-2 text-gray-700 hover:text-blue-600 hover:bg-blue-50 transition-all duration-200 text-xs font-medium border-l-3 border-transparent hover:border-blue-500 cursor-pointer dropdown-menu-item rounded-md"
+                      style={{
+                        display: 'block',
+                        width: '100%',
+                        lineHeight: '1.4',
+                        whiteSpace: 'normal',
+                        wordWrap: 'break-word'
+                      }}
                     >
                       {child.label}
                     </Link>
@@ -130,7 +234,14 @@ export default function NavigationMenu({ className = '' }: NavigationMenuProps) 
                       className="relative"
                       onMouseEnter={() => handleSubMouseEnter(child.label)}
                     >
-                      <button className="w-full text-left px-4 py-2 text-gray-700 hover:text-blue-600 hover:bg-blue-50 transition-colors flex items-center justify-between text-sm font-medium border-l-4 border-transparent hover:border-blue-600">
+                      <button 
+                        className="w-full text-left px-6 py-5 text-gray-700 hover:text-blue-600 hover:bg-blue-50 hover:shadow-sm transition-all duration-200 flex items-center justify-between text-sm font-medium border-l-4 border-transparent hover:border-blue-600 cursor-pointer select-none min-h-[52px]"
+                        style={{
+                          display: 'flex',
+                          alignItems: 'center',
+                          width: '100%'
+                        }}
+                      >
                         {child.label}
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -138,12 +249,24 @@ export default function NavigationMenu({ className = '' }: NavigationMenuProps) 
                       </button>
 
                       {activeSubDropdown === child.label && child.children && (
-                        <div className="absolute left-full top-0 ml-2 bg-white rounded-xl shadow-2xl border border-gray-100 py-3 min-w-[220px] z-[9996]">
+                        <div 
+                          className="absolute left-full top-0 ml-2 bg-white rounded-xl shadow-2xl border border-gray-100 py-4 min-w-[260px] z-[9999]"
+                          style={{
+                            backdropFilter: 'blur(8px)',
+                            backgroundColor: 'rgba(255, 255, 255, 0.95)'
+                          }}
+                        >
                           {child.children.map((subChild) => (
                             <Link
                               key={subChild.href}
                               href={subChild.href!}
-                              className="block px-4 py-3 text-gray-700 hover:text-blue-600 hover:bg-blue-50 transition-colors text-base font-medium border-l-4 border-transparent hover:border-blue-600"
+                              onClick={handleItemClick}
+                              className="block px-4 py-3 text-gray-700 hover:text-blue-600 hover:bg-blue-50 transition-all duration-200 text-sm font-medium border-l-3 border-transparent hover:border-blue-500 cursor-pointer min-h-[44px]"
+                              style={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                width: '100%'
+                              }}
                             >
                               {subChild.label}
                             </Link>
@@ -162,7 +285,7 @@ export default function NavigationMenu({ className = '' }: NavigationMenuProps) 
   }
 
   return (
-    <nav className={`hidden lg:flex items-center space-x-2 ${className}`}>
+    <nav className={`hidden lg:flex items-center space-x-1 ${className}`}>
       {navigationItems.map(renderNavigationItem)}
     </nav>
   )
