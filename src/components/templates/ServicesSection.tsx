@@ -36,12 +36,12 @@ export default function ServicesSection() {
   }
 
   return (
-    <section className="py-16 bg-white relative overflow-hidden">
+    <section className="py-20 bg-gradient-to-b from-white via-blue-50 to-white relative overflow-hidden">
       {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute top-16 right-16 w-32 h-32 bg-blue-500 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-16 left-16 w-36 h-36 bg-green-500 rounded-full blur-3xl"></div>
-        <div className="absolute top-1/2 right-1/3 w-24 h-24 bg-purple-500 rounded-full blur-3xl"></div>
+      <div className="absolute inset-0 opacity-10">
+        <div className="absolute top-16 right-16 w-32 h-32 bg-blue-400 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-16 left-16 w-36 h-36 bg-blue-300 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
+        <div className="absolute top-1/2 right-1/3 w-24 h-24 bg-blue-200 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">

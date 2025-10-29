@@ -25,12 +25,12 @@ export default function NewsSection() {
   }
 
   return (
-    <section className="py-16 bg-gradient-to-br from-gray-50 via-white to-blue-50 relative overflow-hidden">
+    <section className="py-20 bg-gradient-to-br from-white via-blue-50 to-white relative overflow-hidden">
       {/* Background decorative elements */}
-      <div className="absolute inset-0 opacity-30">
-        <div className="absolute top-16 left-12 w-32 h-32 bg-blue-200 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-16 right-12 w-36 h-36 bg-green-200 rounded-full blur-3xl"></div>
-        <div className="absolute top-1/2 left-1/3 w-24 h-24 bg-orange-200 rounded-full blur-2xl"></div>
+      <div className="absolute inset-0 opacity-20">
+        <div className="absolute top-16 left-12 w-32 h-32 bg-blue-200 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-16 right-12 w-36 h-36 bg-blue-300 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1.5s' }}></div>
+        <div className="absolute top-1/2 left-1/3 w-24 h-24 bg-blue-100 rounded-full blur-2xl animate-pulse" style={{ animationDelay: '2.5s' }}></div>
       </div>
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
@@ -52,7 +52,7 @@ export default function NewsSection() {
 
         {/* News Grid */}
         <div className="grid md:grid-cols-3 gap-6 mb-10">
-          {beritaTerkini.map((berita) => (
+          {beritaTerkini.slice(0, 3).map((berita) => (
             <article key={berita.id} className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg border border-white/20 overflow-hidden hover:shadow-2xl hover:scale-105 transition-all duration-300 group">
               {/* Image Placeholder */}
               <div className="aspect-video bg-gradient-to-br from-gray-100 via-gray-50 to-blue-50 relative overflow-hidden">
@@ -79,59 +79,66 @@ export default function NewsSection() {
               </div>
 
               {/* Content */}
-              <div className="p-5">
-                <h3 className="text-lg font-bold text-gray-900 mb-2.5 line-clamp-2 group-hover:text-blue-600 transition-colors leading-tight">
-                  <Link href={`/berita/${berita.id}`}>
-                    {berita.judul}
-                  </Link>
-                </h3>
+              <div className="p-5 flex flex-col h-[240px]">
+                <div className="flex-grow">
+                  <h3 className="text-lg font-bold text-gray-900 mb-2.5 line-clamp-2 group-hover:text-blue-600 transition-colors leading-tight">
+                    <Link href={`/informasi/berita/${berita.id}`}>
+                      {berita.judul}
+                    </Link>
+                  </h3>
+                  
+                  <p className="text-sm text-gray-600 leading-relaxed mb-4 line-clamp-3">
+                    {berita.ringkasan}
+                  </p>
+                </div>
                 
-                <p className="text-sm text-gray-600 leading-relaxed mb-4 line-clamp-3">
-                  {berita.ringkasan}
-                </p>
-                
-                <Link 
-                  href={`/berita/${berita.id}`}
-                  className="inline-flex items-center text-blue-600 hover:text-blue-700 font-semibold text-sm group-hover:translate-x-2 transition-all duration-200 bg-blue-50 hover:bg-blue-100 px-3 py-2 rounded-lg"
-                >
-                  Baca Selengkapnya
-                  <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
-                </Link>
+                <div className="pt-4 border-t border-gray-100">
+                  <div className="flex justify-end">
+                    <Link 
+                      href={`/informasi/berita/${berita.id}`}
+                      className="inline-flex items-center text-blue-600 hover:text-blue-700 font-medium text-sm group"
+                    >
+                      Baca Selengkapnya
+                      <svg className="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </Link>
+                  </div>
+                </div>
               </div>
             </article>
           ))}
         </div>
 
         {/* Statistics Section */}
-        <div className="bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 rounded-3xl p-6 mb-10 shadow-2xl border border-blue-500/20 relative overflow-hidden">
+        <div className="bg-gradient-to-r from-blue-700 via-blue-600 to-blue-700 rounded-3xl p-8 mb-12 shadow-2xl border border-blue-400/20 relative overflow-hidden backdrop-blur-sm">
           {/* Background Pattern for Stats */}
-          <div className="absolute inset-0 opacity-10">
-            <div className="absolute top-0 right-0 w-24 h-24 bg-white rounded-full blur-3xl"></div>
-            <div className="absolute bottom-0 left-0 w-20 h-20 bg-white rounded-full blur-2xl"></div>
+          <div className="absolute inset-0 opacity-20">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-white rounded-full blur-3xl animate-pulse"></div>
+            <div className="absolute bottom-0 left-0 w-32 h-32 bg-blue-200 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
+            <div className="absolute top-1/2 left-1/2 w-40 h-40 bg-blue-100 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
           </div>
           
-          <div className="text-center text-white mb-6 relative">
-            <h3 className="text-xl md:text-2xl font-bold mb-2">Pencapaian Dinas Perkimtan Sumbar</h3>
-            <p className="text-blue-100 text-base">Data statistik kinerja tahun 2024</p>
+          <div className="text-center text-white mb-8 relative">
+            <h3 className="text-2xl md:text-3xl font-bold mb-3">Pencapaian Dinas Perkimtan Sumbar</h3>
+            <p className="text-blue-100 text-lg">Data statistik kinerja tahun 2024</p>
           </div>
           
-          <div className="grid md:grid-cols-4 gap-6 relative">
-            <div className="text-center group">
-              <div className="text-2xl md:text-3xl font-bold text-white mb-2 group-hover:scale-110 transition-transform duration-300">1,200+</div>
+          <div className="grid md:grid-cols-4 gap-8 relative">
+            <div className="text-center group bg-white/10 backdrop-blur-sm rounded-2xl p-6 hover:bg-white/20 transition-all duration-300">
+              <div className="text-3xl md:text-4xl font-bold text-white mb-3 group-hover:scale-110 transition-transform duration-300">1,200+</div>
               <div className="text-blue-100 text-sm font-medium">Unit Rumah Dibangun</div>
             </div>
-            <div className="text-center group">
-              <div className="text-2xl md:text-3xl font-bold text-white mb-2 group-hover:scale-110 transition-transform duration-300">500 Ha</div>
+            <div className="text-center group bg-white/10 backdrop-blur-sm rounded-2xl p-6 hover:bg-white/20 transition-all duration-300">
+              <div className="text-3xl md:text-4xl font-bold text-white mb-3 group-hover:scale-110 transition-transform duration-300">500 Ha</div>
               <div className="text-blue-100 text-sm font-medium">Kawasan Tertata</div>
             </div>
-            <div className="text-center group">
-              <div className="text-2xl md:text-3xl font-bold text-white mb-2 group-hover:scale-110 transition-transform duration-300">2,000</div>
+            <div className="text-center group bg-white/10 backdrop-blur-sm rounded-2xl p-6 hover:bg-white/20 transition-all duration-300">
+              <div className="text-3xl md:text-4xl font-bold text-white mb-3 group-hover:scale-110 transition-transform duration-300">2,000</div>
               <div className="text-blue-100 text-sm font-medium">Sertifikat Tanah</div>
             </div>
-            <div className="text-center group">
-              <div className="text-2xl md:text-3xl font-bold text-white mb-2 group-hover:scale-110 transition-transform duration-300">95%</div>
+            <div className="text-center group bg-white/10 backdrop-blur-sm rounded-2xl p-6 hover:bg-white/20 transition-all duration-300">
+              <div className="text-3xl md:text-4xl font-bold text-white mb-3 group-hover:scale-110 transition-transform duration-300">95%</div>
               <div className="text-blue-100 text-sm font-medium">Kepuasan Masyarakat</div>
             </div>
           </div>
@@ -140,7 +147,7 @@ export default function NewsSection() {
         {/* Call to Action */}
         <div className="text-center">
           <Link 
-            href="/berita" 
+            href="/informasi/berita" 
             className="inline-flex items-center bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white px-6 py-3 rounded-2xl font-semibold text-base transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105 group"
           >
             Lihat Semua Berita

@@ -68,7 +68,9 @@ export const beritaTerkini = [
     ringkasan: "Dinas Perkimtan Sumbar menargetkan pembangunan 2.500 unit rumah melalui program Bantuan Stimulan Perumahan Swadaya tahun 2024.",
     kategori: "Perumahan",
     tanggal: "2024-01-15",
-    penulis: "Humas Dinas Perkimtan"
+    penulis: "Humas Dinas Perkimtan",
+    gambar: "/app/assets/img/berita/berita-1.jpg",
+    konten: "Dinas Perumahan, Kawasan Permukiman dan Pertanahan (Perkimtan) Sumatera Barat mengumumkan target ambisius untuk membangun 2.500 unit rumah melalui program Bantuan Stimulan Perumahan Swadaya (BSPS) di tahun 2024. Program ini bertujuan untuk meningkatkan kualitas hunian masyarakat berpenghasilan rendah di seluruh wilayah Sumatera Barat."
   },
   {
     id: 2,
@@ -76,7 +78,9 @@ export const beritaTerkini = [
     ringkasan: "Dinas menggelar sosialisasi peraturan terbaru mengenai Izin Mendirikan Bangunan (IMB) kepada developer dan masyarakat.",
     kategori: "Kawasan Permukiman",
     tanggal: "2024-01-12",
-    penulis: "Bidang Bangunan Gedung"
+    penulis: "Bidang Bangunan Gedung",
+    gambar: "/app/assets/img/berita/berita-2.jpg",
+    konten: "Dalam rangka meningkatkan pemahaman masyarakat tentang regulasi terbaru, Dinas Perkimtan mengadakan sosialisasi mengenai prosedur dan persyaratan Izin Mendirikan Bangunan (IMB). Acara ini dihadiri oleh perwakilan developer, kontraktor, dan masyarakat umum."
   },
   {
     id: 3,
@@ -84,7 +88,59 @@ export const beritaTerkini = [
     ringkasan: "Program sertifikasi tanah gratis diluncurkan untuk membantu masyarakat kurang mampu mendapatkan kepastian hukum atas tanah.",
     kategori: "Pertanahan",
     tanggal: "2024-01-10",
-    penulis: "Bidang Pertanahan"
+    penulis: "Bidang Pertanahan",
+    gambar: "/app/assets/img/berita/berita-3.jpg",
+    konten: "Sebagai upaya memberikan kepastian hukum atas kepemilikan tanah, Dinas Perkimtan meluncurkan program sertifikasi tanah gratis yang ditujukan untuk masyarakat kurang mampu. Program ini merupakan kolaborasi dengan BPN Sumbar."
+  },
+  {
+    id: 4,
+    judul: "Pembangunan Rusunawa Tahap II di Kota Padang",
+    ringkasan: "Dinas Perkimtan memulai pembangunan Rumah Susun Sederhana Sewa (Rusunawa) tahap II di Kota Padang.",
+    kategori: "Perumahan",
+    tanggal: "2024-01-08",
+    penulis: "Bidang Perumahan",
+    gambar: "/app/assets/img/berita/berita-4.jpg",
+    konten: "Pembangunan Rusunawa tahap II di Kota Padang telah dimulai. Proyek ini merupakan solusi untuk menyediakan hunian layak bagi masyarakat berpenghasilan rendah di kawasan perkotaan."
+  },
+  {
+    id: 5,
+    judul: "Penataan Kawasan Kumuh di Pesisir Padang",
+    ringkasan: "Program penataan kawasan kumuh di pesisir Kota Padang menunjukkan kemajuan signifikan.",
+    kategori: "Kawasan Permukiman",
+    tanggal: "2024-01-05",
+    penulis: "Bidang Kawasan Permukiman",
+    gambar: "/app/assets/img/berita/berita-5.jpg",
+    konten: "Program penataan kawasan kumuh di pesisir Kota Padang telah mencapai 70% dari target. Program ini mencakup perbaikan infrastruktur, sanitasi, dan fasilitas umum."
+  },
+  {
+    id: 6,
+    judul: "Workshop Perencanaan Tata Ruang Permukiman",
+    ringkasan: "Dinas mengadakan workshop perencanaan tata ruang untuk menciptakan permukiman yang lebih teratur.",
+    kategori: "Kawasan Permukiman",
+    tanggal: "2024-01-03",
+    penulis: "Bidang Perencanaan",
+    gambar: "/app/assets/img/berita/berita-6.jpg",
+    konten: "Workshop ini diselenggarakan untuk meningkatkan kapasitas perencana dan pengembang dalam menciptakan kawasan permukiman yang lebih teratur dan berkelanjutan."
+  },
+  {
+    id: 7,
+    judul: "Penyelesaian Sengketa Tanah di Kabupaten Agam",
+    ringkasan: "Tim Pertanahan berhasil menyelesaikan sengketa tanah yang telah berlangsung selama bertahun-tahun.",
+    kategori: "Pertanahan",
+    tanggal: "2023-12-28",
+    penulis: "Bidang Pertanahan",
+    gambar: "/app/assets/img/berita/berita-7.jpg",
+    konten: "Setelah melalui proses mediasi yang panjang, tim pertanahan Dinas Perkimtan berhasil menyelesaikan sengketa tanah di Kabupaten Agam yang telah berlangsung selama bertahun-tahun."
+  },
+  {
+    id: 8,
+    judul: "Inovasi Pelayanan Digital Pertanahan",
+    ringkasan: "Dinas meluncurkan sistem pelayanan digital untuk mempermudah urusan pertanahan.",
+    kategori: "Pertanahan",
+    tanggal: "2023-12-25",
+    penulis: "Bidang Teknologi Informasi",
+    gambar: "/app/assets/img/berita/berita-8.jpg",
+    konten: "Dalam upaya meningkatkan kualitas pelayanan, Dinas Perkimtan meluncurkan sistem pelayanan digital yang memungkinkan masyarakat mengurus dokumen pertanahan secara online."
   }
 ]
 

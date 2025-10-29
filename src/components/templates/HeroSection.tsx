@@ -3,13 +3,13 @@ import { dinasProfile } from '@/lib/data'
 
 export default function HeroSection() {
   return (
-    <section className="relative min-h-[65vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-blue-900 via-blue-800 to-indigo-900 pt-16">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-blue-800 via-blue-700 to-blue-900 pt-20">
       {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-16 left-16 w-48 h-48 bg-white rounded-full blur-3xl"></div>
-        <div className="absolute bottom-12 right-16 w-60 h-60 bg-blue-300 rounded-full blur-3xl"></div>
-        <div className="absolute top-1/2 left-1/4 w-40 h-40 bg-green-300 rounded-full blur-3xl"></div>
-        <div className="absolute top-1/3 right-1/3 w-32 h-32 bg-yellow-300 rounded-full blur-3xl"></div>
+      <div className="absolute inset-0 opacity-20">
+        <div className="absolute top-16 left-16 w-48 h-48 bg-white rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-12 right-16 w-60 h-60 bg-blue-200 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
+        <div className="absolute top-1/2 left-1/4 w-40 h-40 bg-blue-100 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
+        <div className="absolute top-1/3 right-1/3 w-32 h-32 bg-white rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1.5s' }}></div>
       </div>
 
       {/* Background Buildings Pattern */}

@@ -19,16 +19,18 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="id">
-      <body className={inter.className}>
-        <Navbar />
-        <main className="pt-20">
-          {children}
-        </main>
-        <Footer />
-        <ScrollToTop />
-        {/* Portal root for mobile menu */}
-        <div id="mobile-menu-portal" style={{ zIndex: 99999 }}></div>
+    <html lang="id" className="scroll-smooth">
+      <body className={`${inter.className} antialiased`}>
+        <div className="relative min-h-screen flex flex-col">
+          <Navbar />
+          <main className="flex-grow">
+            {children}
+          </main>
+          <Footer />
+          <ScrollToTop />
+          {/* Portal root for mobile menu */}
+          <div id="mobile-menu-portal" style={{ zIndex: 99999 }}></div>
+        </div>
       </body>
     </html>
   )
