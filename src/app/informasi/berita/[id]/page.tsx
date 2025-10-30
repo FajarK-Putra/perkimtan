@@ -3,11 +3,11 @@ import Link from 'next/link'
 import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 
-interface Props {
+type Props = {
   params: {
     id: string
   }
-  searchParams: { [key: string]: string | string[] | undefined }
+  searchParams?: { [key: string]: string | string[] | undefined }
 }
 
 export function generateMetadata({ params }: Props): Metadata {
