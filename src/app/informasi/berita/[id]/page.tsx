@@ -3,17 +3,17 @@ import Link from 'next/link'
 import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 
-type Params = { id: string }
+type Params = Promise<{ id: string }>
 
 type SearchParams = { [key: string]: string | string[] | undefined }
 
 export async function generateMetadata({ 
-  params,
-}: {
-  params: Params
-  searchParams?: SearchParams
+  params 
+}: { 
+  params: Params 
 }): Promise<Metadata> {
-  const berita = beritaTerkini.find(b => b.id === parseInt(params.id))
+  const { id } = await params
+  const berita = beritaTerkini.find(b => b.id === parseInt(id))
   
   if (!berita) {
     return {
@@ -27,13 +27,13 @@ export async function generateMetadata({
   }
 }
 
-export default function BeritaDetailPage({ 
-  params,
-}: {
-  params: Params
-  searchParams?: SearchParams
+export default async function BeritaDetailPage({ 
+  params 
+}: { 
+  params: Params 
 }) {
-  const berita = beritaTerkini.find(b => b.id === parseInt(params.id))
+  const { id } = await params
+  const berita = beritaTerkini.find(b => b.id === parseInt(id))
   
   if (!berita) {
     notFound()
