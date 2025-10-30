@@ -4,13 +4,10 @@ import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 
 type Props = {
-  params: {
-    id: string
-  }
-  searchParams?: { [key: string]: string | string[] | undefined }
+  params: { id: string }
 }
 
-export function generateMetadata({ params }: Props): Metadata {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const berita = beritaTerkini.find(b => b.id === parseInt(params.id))
   
   if (!berita) {
