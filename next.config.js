@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ['perkimtan.sumbar.go.id', 'localhost'], // Domain untuk gambar
+    domains: ['perkimtan.sumbar.go.id', 'localhost', 'placehold.co'], // Domain untuk gambar
   },
   async rewrites() {
     return [
