@@ -6,11 +6,12 @@ import DownloadButton from '@/components/atoms/DownloadButton'
 import { pengumumanList } from '@/lib/data'
 
 type Props = {
-  params: { id: string }
+  params: Promise<{ id: string }>
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const pengumuman = pengumumanList.find(item => item.id === parseInt(params.id))
+  const { id } = await params
+  const pengumuman = pengumumanList.find(item => item.id === parseInt(id))
   
   if (!pengumuman) {
     return {
@@ -24,8 +25,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 }
 
-export default function DetailPengumumanPage({ params }: Props) {
-  const pengumuman = pengumumanList.find(item => item.id === parseInt(params.id))
+export default async function DetailPengumumanPage({ params }: Props) {
+  const { id } = await params
+  const pengumuman = pengumumanList.find(item => item.id === parseInt(id))
 
   if (!pengumuman) {
     notFound()

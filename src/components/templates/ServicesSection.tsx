@@ -1,4 +1,3 @@
-import Link from 'next/link'
 import { layananUtama } from '@/lib/data'
 
 export default function ServicesSection() {
