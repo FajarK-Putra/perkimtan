@@ -56,7 +56,7 @@ export default function PengumumanPage() {
   return (
     <main className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50">
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-20">
+      <section className="bg-gradient-to-r from-blue-600 to-blue-800 text-white pt-34 pb-20">
         <div className="container mx-auto px-4">
           <AnimatedSection animation="fadeInUp">
             <h1 className="text-4xl md:text-5xl font-bold mb-4">

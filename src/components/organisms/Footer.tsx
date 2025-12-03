@@ -67,11 +67,11 @@ export default function Footer() {
             <h3 className="text-lg font-semibold mb-6 text-white">Profil Dinas</h3>
             <ul className="space-y-4">
               <li>
-                <Link href="/profil/tentang" className="text-gray-300 hover:text-white hover:translate-x-1 transition-all duration-200 text-sm flex items-center group">
+                <Link href="/profil/sejarah-singkat" className="text-gray-300 hover:text-white hover:translate-x-1 transition-all duration-200 text-sm flex items-center group">
                   <svg className="w-3 h-3 mr-2 text-blue-400 group-hover:text-blue-300" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
                   </svg>
-                  Tentang Kami
+                  Sejarah Singkat
                 </Link>
               </li>
               <li>
@@ -83,7 +83,15 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/profil/struktur" className="text-gray-300 hover:text-white hover:translate-x-1 transition-all duration-200 text-sm flex items-center group">
+                <Link href="/profil/tugas-dan-fungsi" className="text-gray-300 hover:text-white hover:translate-x-1 transition-all duration-200 text-sm flex items-center group">
+                  <svg className="w-3 h-3 mr-2 text-blue-400 group-hover:text-blue-300" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
+                  </svg>
+                  Tugas dan Fungsi
+                </Link>
+              </li>
+              <li>
+                <Link href="/profil/struktur-organisasi" className="text-gray-300 hover:text-white hover:translate-x-1 transition-all duration-200 text-sm flex items-center group">
                   <svg className="w-3 h-3 mr-2 text-blue-400 group-hover:text-blue-300" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
                   </svg>
@@ -91,11 +99,11 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/profil/program-kerja" className="text-gray-300 hover:text-white hover:translate-x-1 transition-all duration-200 text-sm flex items-center group">
+                <Link href="/profil/pejabat-struktural" className="text-gray-300 hover:text-white hover:translate-x-1 transition-all duration-200 text-sm flex items-center group">
                   <svg className="w-3 h-3 mr-2 text-blue-400 group-hover:text-blue-300" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
                   </svg>
-                  Program Kerja
+                  Pejabat Struktural
                 </Link>
               </li>
             </ul>
@@ -103,79 +111,57 @@ export default function Footer() {
 
           {/* Services - Layanan */}
           <div>
-            <h3 className="text-lg font-semibold mb-6 text-white">Layanan</h3>
+            <h3 className="text-lg font-semibold mb-6 text-white">Layanan & Informasi</h3>
             <ul className="space-y-4">
               <li>
-                <Link href="/layanan/perizinan" className="text-gray-300 hover:text-white hover:translate-x-1 transition-all duration-200 text-sm flex items-center group">
-                  <svg className="w-3 h-3 mr-2 text-green-400 group-hover:text-green-300" fill="currentColor" viewBox="0 0 20 20">
+                <Link href="/layanan" className="text-gray-300 hover:text-white hover:translate-x-1 transition-all duration-200 text-sm flex items-center group">
+                  <svg className="w-3 h-3 mr-2 text-blue-400 group-hover:text-blue-300" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
                   </svg>
-                  Perizinan
+                  Layanan
                 </Link>
               </li>
               <li>
-                <Link href="/layanan/online" className="text-gray-300 hover:text-white hover:translate-x-1 transition-all duration-200 text-sm flex items-center group">
-                  <svg className="w-3 h-3 mr-2 text-green-400 group-hover:text-green-300" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
-                  </svg>
-                  Layanan Online
-                </Link>
-              </li>
-              <li>
-                <Link href="/layanan/konsultasi" className="text-gray-300 hover:text-white hover:translate-x-1 transition-all duration-200 text-sm flex items-center group">
-                  <svg className="w-3 h-3 mr-2 text-green-400 group-hover:text-green-300" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
-                  </svg>
-                  Konsultasi
-                </Link>
-              </li>
-              <li>
-                <Link href="/berita" className="text-gray-300 hover:text-white hover:translate-x-1 transition-all duration-200 text-sm flex items-center group">
-                  <svg className="w-3 h-3 mr-2 text-green-400 group-hover:text-green-300" fill="currentColor" viewBox="0 0 20 20">
+                <Link href="/informasi/berita" className="text-gray-300 hover:text-white hover:translate-x-1 transition-all duration-200 text-sm flex items-center group">
+                  <svg className="w-3 h-3 mr-2 text-blue-400 group-hover:text-blue-300" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
                   </svg>
                   Berita
                 </Link>
               </li>
               <li>
-                <Link href="/galeri" className="text-gray-300 hover:text-white hover:translate-x-1 transition-all duration-200 text-sm flex items-center group">
-                  <svg className="w-3 h-3 mr-2 text-green-400 group-hover:text-green-300" fill="currentColor" viewBox="0 0 20 20">
+                <Link href="/pengumuman" className="text-gray-300 hover:text-white hover:translate-x-1 transition-all duration-200 text-sm flex items-center group">
+                  <svg className="w-3 h-3 mr-2 text-blue-400 group-hover:text-blue-300" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
                   </svg>
-                  Galeri
+                  Pengumuman
                 </Link>
               </li>
               <li>
-                <Link href="/kontak" className="text-gray-300 hover:text-white hover:translate-x-1 transition-all duration-200 text-sm flex items-center group">
-                  <svg className="w-3 h-3 mr-2 text-green-400 group-hover:text-green-300" fill="currentColor" viewBox="0 0 20 20">
+                <Link href="/informasi/foto" className="text-gray-300 hover:text-white hover:translate-x-1 transition-all duration-200 text-sm flex items-center group">
+                  <svg className="w-3 h-3 mr-2 text-blue-400 group-hover:text-blue-300" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
                   </svg>
-                  Kontak
+                  Foto
+                </Link>
+              </li>
+              <li>
+                <Link href="/PPID/profil-ppid" className="text-gray-300 hover:text-white hover:translate-x-1 transition-all duration-200 text-sm flex items-center group">
+                  <svg className="w-3 h-3 mr-2 text-blue-400 group-hover:text-blue-300" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
+                  </svg>
+                  PPID
+                </Link>
+              </li>
+              <li>
+                <Link href="/lapor" className="text-gray-300 hover:text-white hover:translate-x-1 transition-all duration-200 text-sm flex items-center group">
+                  <svg className="w-3 h-3 mr-2 text-blue-400 group-hover:text-blue-300" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
+                  </svg>
+                  Lapor
                 </Link>
               </li>
             </ul>
-          </div>
-        </div>
-
-        {/* Newsletter Section */}
-        <div className="border-t border-gray-700/50 py-8">
-          <div className="max-w-md mx-auto text-center">
-            <h4 className="text-lg font-semibold text-white mb-3">
-              Berlangganan Informasi Terkini
-            </h4>
-            <p className="text-gray-300 text-sm mb-6">
-              Dapatkan update berita dan informasi program terbaru dari Dinas Perkimtan Sumbar
-            </p>
-            <div className="flex flex-col sm:flex-row gap-3">
-              <input
-                type="email"
-                placeholder="Masukkan email Anda"
-                className="flex-1 px-4 py-3 rounded-lg bg-gray-800 border border-gray-600 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              />
-              <button className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 hover:scale-105 whitespace-nowrap">
-                Berlangganan
-              </button>
-            </div>
           </div>
         </div>
 
@@ -215,10 +201,10 @@ export default function Footer() {
             
             <div className="text-center lg:text-right">
               <p className="text-gray-400 text-sm font-medium">
-                © {currentYear} {dinasProfile.shortName}. Semua hak dilindungi undang-undang.
+                © {currentYear} DISKOMINFOTIK Provinsi Sumatera Barat. All Rights Reserved.
               </p>
               <p className="text-gray-500 text-xs mt-1">
-                Dikembangkan oleh Tim IT Dinas Perkimtan Sumbar
+                Dikembangkan oleh Tim IT DISKOMINFOTIK Sumatera Barat
               </p>
             </div>
           </div>

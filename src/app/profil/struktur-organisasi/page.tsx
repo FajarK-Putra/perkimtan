@@ -10,7 +10,7 @@ export default function StrukturOrganisasi() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-blue-50">
       {/* Header Section */}
-      <div className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-16">
+      <div className="bg-gradient-to-r from-blue-600 to-blue-800 text-white pt-24 pb-16">
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center">
             <div className="inline-flex items-center justify-center w-16 h-16 bg-white/20 rounded-xl mb-6">

@@ -16,8 +16,8 @@ export default function Logo({ className = '', size = 'md' }: LogoProps) {
   return (
     <Link href="/" className={`flex items-center space-x-3 ${className} group`}>
       <Image
-        src="/app/assets/img/logo-perkimtan.png"
-        alt="Logo Perkimtan"
+        src="/app/assets/img/logo-prov-sumatra-barat.png"
+        alt="Logo Provinsi Sumatera Barat"
         width={48}
         height={48}
         className={`${sizeClasses[size]} w-auto transition-transform duration-200 group-hover:scale-105`}
