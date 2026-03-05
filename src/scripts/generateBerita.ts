@@ -1,7 +1,8 @@
 import { MongoClient } from "mongodb";
 import { faker } from "@faker-js/faker";
 
-const uri = process.env.MONGODB_URI as string;
+// const uri = process.env.MONGODB_URI as string;
+const uri = "mongodb+srv://fjrkurnia1112_db_user:cApQRnHUmQge3Jsn@cluster-perkim.4nzs0m1.mongodb.net/?appName=cluster-perkim";
 
 const judulList = [
   "Dinas Perkim Sumbar Tingkatkan Kualitas Permukiman Warga",
