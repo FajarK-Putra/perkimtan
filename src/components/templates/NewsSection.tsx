@@ -10,14 +10,20 @@ interface NewsItem {
 }
 
 export default async function NewsSection() {
-  const client = await clientPromise;
-  const db = client.db("berita_db");
-  const beritaTerkini = (await db
-    .collection("berita")
-    .find({})
-    .sort({ tanggal: -1 })
-    .limit(3)
-    .toArray()) as unknown as NewsItem[];
+  let beritaTerkini: NewsItem[] = [];
+  
+  try {
+    const client = await clientPromise;
+    const db = client.db("berita_db");
+    beritaTerkini = (await db
+      .collection("berita")
+      .find({})
+      .sort({ tanggal: -1 })
+      .limit(3)
+      .toArray()) as unknown as NewsItem[];
+  } catch (error) {
+    console.error("Failed to fetch news for NewsSection:", error);
+  }
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString)
