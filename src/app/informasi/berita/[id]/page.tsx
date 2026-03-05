@@ -1,22 +1,33 @@
 import Link from 'next/link'
 import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
+import clientPromise from '@/lib/mongodb'
+import { ObjectId } from 'mongodb'
 
 type Params = Promise<{ id: string }>
 
-const getBaseUrl = () => {
-  if (process.env.NEXT_PUBLIC_BASE_URL) return process.env.NEXT_PUBLIC_BASE_URL;
-  if (process.env.VERCEL_PROJECT_PRODUCTION_URL) return `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`;
-  if (process.env.VERCEL_URL) return `https://${process.env.VERCEL_URL}`;
-  return 'http://localhost:3000';
-};
-
 async function getBeritaData(id: string) {
   try {
-    const baseUrl = getBaseUrl();
-    const res = await fetch(`${baseUrl}/api/berita/${id}`, { cache: 'no-store' });
-    if (!res.ok) return null;
-    return await res.json();
+    const client = await clientPromise;
+    const db = client.db("berita_db");
+
+    let berita = null;
+
+    // 1. Try numeric id first (used by frontend links)
+    const numericId = parseInt(id, 10);
+    if (!isNaN(numericId)) {
+      berita = await db.collection("berita").findOne({ id: numericId });
+    }
+
+    // 2. Try as MongoDB ObjectId
+    if (!berita && ObjectId.isValid(id) && id.length === 24) {
+      berita = await db.collection("berita").findOne({ _id: new ObjectId(id) });
+    }
+
+    if (!berita) return null;
+
+    // Serialize MongoDB document for React (convert _id to string)
+    return JSON.parse(JSON.stringify(berita));
   } catch (error) {
     console.error("Failed to fetch berita detail:", error);
     return null;

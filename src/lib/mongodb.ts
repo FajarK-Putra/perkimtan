@@ -1,11 +1,6 @@
 import { MongoClient } from "mongodb";
 
-// const uri = process.env.MONGODB_URI;
-const uri = "mongodb+srv://fjrkurnia1112_db_user:cApQRnHUmQge3Jsn@cluster-perkim.4nzs0m1.mongodb.net/?appName=cluster-perkim";
-
-// if (!uri && process.env.NODE_ENV !== "production") {
-//   throw new Error("Please define the MONGODB_URI environment variable");
-// }
+const uri = process.env.MONGODB_URI || "mongodb+srv://fjrkurnia1112_db_user:cApQRnHUmQge3Jsn@cluster-perkim.4nzs0m1.mongodb.net/?appName=cluster-perkim";
 
 let client: MongoClient;
 let clientPromise: Promise<MongoClient>;

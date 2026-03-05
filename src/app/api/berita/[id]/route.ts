@@ -1,29 +1,33 @@
 import clientPromise from "@/lib/mongodb";
 import { ObjectId } from "mongodb";
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 
 export async function GET(
-  request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  _request: Request,
+  context: { params: Promise<{ id: string }> }
 ) {
   try {
-    const { id } = await params;
+    const { id } = await context.params;
+    console.log('[API /berita/[id]] Received id:', id);
+
     const client = await clientPromise;
     const db = client.db("berita_db");
-    
-    // Support both the user-requested _id (ObjectId) and our existing numeric id
-    let query: Record<string, unknown>;
-    
-    if (ObjectId.isValid(id) && (String(new ObjectId(id)) === id)) {
-      query = { _id: new ObjectId(id) };
-    } else {
-      query = { id: parseInt(id) };
+
+    let berita = null;
+
+    // 1. Try numeric id first (most common from frontend links)
+    const numericId = parseInt(id, 10);
+    if (!isNaN(numericId)) {
+      berita = await db.collection("berita").findOne({ id: numericId });
     }
 
-    const berita = await db.collection("berita").findOne(query);
+    // 2. If not found, try as MongoDB ObjectId
+    if (!berita && ObjectId.isValid(id) && id.length === 24) {
+      berita = await db.collection("berita").findOne({ _id: new ObjectId(id) });
+    }
 
     if (!berita) {
       return NextResponse.json(
@@ -33,9 +37,10 @@ export async function GET(
     }
 
     return NextResponse.json(berita);
-  } catch (_error) {
+  } catch (error) {
+    console.error('[API /berita/[id]] Error:', error);
     return NextResponse.json(
-      { message: "Error mengambil detail berita" },
+      { message: "Error mengambil detail berita", error: String(error) },
       { status: 500 }
     );
   }
