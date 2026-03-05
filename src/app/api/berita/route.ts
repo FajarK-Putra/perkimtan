@@ -46,7 +46,7 @@ export async function GET(request: NextRequest) {
       currentPage: page,
       categories: ["Semua", ...categories]
     });
-  } catch (_error) {
+  } catch {
     return NextResponse.json(
       { message: "Error mengambil data berita" },
       { status: 500 }
