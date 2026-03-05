@@ -14,7 +14,7 @@ export async function GET(request: NextRequest) {
     const db = client.db("berita_db");
 
     // Build Query
-    const query: any = {};
+    const query: Record<string, unknown> = {};
     
     if (cat !== "Semua") {
       query.kategori = cat;
@@ -46,7 +46,7 @@ export async function GET(request: NextRequest) {
       currentPage: page,
       categories: ["Semua", ...categories]
     });
-  } catch (error) {
+  } catch (_error) {
     return NextResponse.json(
       { message: "Error mengambil data berita" },
       { status: 500 }

@@ -5,11 +5,22 @@ import AnimatedSection from '@/components/atoms/AnimatedSection'
 import { useState, useEffect, Suspense } from 'react'
 import { useSearchParams } from 'next/navigation'
 
+interface Berita {
+  _id: string;
+  id: number;
+  judul: string;
+  ringkasan: string;
+  isi: string;
+  kategori: string;
+  tanggal: string;
+  penulis: string;
+}
+
 function BeritaContent() {
   const searchParams = useSearchParams()
   const initialSearch = searchParams.get('q') || ''
   
-  const [beritaList, setBeritaList] = useState<any[]>([])
+  const [beritaList, setBeritaList] = useState<Berita[]>([])
   const [categories, setCategories] = useState<string[]>(['Semua'])
   const [loading, setLoading] = useState(true)
   const [activeCategory, setActiveCategory] = useState('Semua')
@@ -25,7 +36,7 @@ function BeritaContent() {
       setSearchQuery(q)
       setCurrentPage(1)
     }
-  }, [searchParams])
+  }, [searchParams, searchQuery])
 
   useEffect(() => {
     const fetchBerita = async () => {

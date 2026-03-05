@@ -1,6 +1,5 @@
 'use client';
 
-import { Metadata } from "next";
 import { useState } from "react";
 
 // Data dummy untuk informasi dikecualikan
