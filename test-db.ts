@@ -1,4 +1,4 @@
-import clientPromise from './src/lib/mongodb.ts';
+import clientPromise from './src/lib/mongodb';
 
 async function test() {
   try {
