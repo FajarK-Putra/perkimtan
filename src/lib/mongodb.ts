@@ -10,7 +10,6 @@ let client: MongoClient;
 let clientPromise: Promise<MongoClient>;
 
 declare global {
-  // eslint-disable-next-line no-var
   var _mongoClientPromise: Promise<MongoClient>;
 }
 
@@ -30,12 +29,14 @@ if (uri) {
   }
 } else {
   // During build phase on Vercel, the URI might be missing.
-  // We return a promise that will never resolve or throw a descriptive error when awaited.
-  clientPromise = new Promise((_, reject) => {
-    if (process.env.NODE_ENV === "production") {
-      console.warn("MONGODB_URI is missing. Database features will be unavailable.");
-    }
-  });
+  if (process.env.NODE_ENV === "production") {
+    console.warn("MONGODB_URI is missing. Database features will be unavailable.");
+  }
+  // Reject the promise so that await doesn't hang infinitely
+  clientPromise = Promise.reject(new Error("MONGODB_URI is missing from environment variables."));
+  
+  // Suppress unhandled rejection warning immediately
+  clientPromise.catch(() => {});
 }
 
 // Export a module-scoped MongoClient promise.
