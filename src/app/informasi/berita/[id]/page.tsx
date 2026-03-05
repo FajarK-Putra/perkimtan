@@ -1,9 +1,27 @@
-import clientPromise from '@/lib/mongodb'
 import Link from 'next/link'
 import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 
 type Params = Promise<{ id: string }>
+
+const getBaseUrl = () => {
+  if (process.env.NEXT_PUBLIC_BASE_URL) return process.env.NEXT_PUBLIC_BASE_URL;
+  if (process.env.VERCEL_PROJECT_PRODUCTION_URL) return `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`;
+  if (process.env.VERCEL_URL) return `https://${process.env.VERCEL_URL}`;
+  return 'http://localhost:3000';
+};
+
+async function getBeritaData(id: string) {
+  try {
+    const baseUrl = getBaseUrl();
+    const res = await fetch(`${baseUrl}/api/berita/${id}`, { cache: 'no-store' });
+    if (!res.ok) return null;
+    return await res.json();
+  } catch (error) {
+    console.error("Failed to fetch berita detail:", error);
+    return null;
+  }
+}
 
 export async function generateMetadata({ 
   params 
@@ -11,9 +29,7 @@ export async function generateMetadata({
   params: Params 
 }): Promise<Metadata> {
   const { id } = await params
-  const client = await clientPromise
-  const db = client.db("berita_db")
-  const berita = await db.collection("berita").findOne({ id: parseInt(id) })
+  const berita = await getBeritaData(id);
   
   if (!berita) {
     return {
@@ -33,9 +49,7 @@ export default async function BeritaDetailPage({
   params: Params 
 }) {
   const { id } = await params
-  const client = await clientPromise
-  const db = client.db("berita_db")
-  const berita = await db.collection("berita").findOne({ id: parseInt(id) })
+  const berita = await getBeritaData(id);
   
   if (!berita) {
     notFound()
