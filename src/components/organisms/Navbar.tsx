@@ -96,7 +96,7 @@ export default function Navbar() {
                   onBlur={() => setTimeout(() => setIsSearchFocused(false), 200)}
                   onKeyDown={(e) => {
                     if (e.key === 'Enter' && searchQuery.trim()) {
-                      window.location.href = `/informasi/berita?search=${encodeURIComponent(searchQuery)}`
+                      window.location.href = `/informasi/berita?q=${encodeURIComponent(searchQuery)}`
                     }
                   }}
                   className="w-full pl-10 pr-10 py-2.5 rounded-lg border border-gray-300 hover:border-gray-400 focus:outline-none focus:border-gray-400 transition-colors duration-200 text-sm text-gray-900 placeholder-gray-500 bg-white"
@@ -130,7 +130,7 @@ export default function Navbar() {
                   </div>
                   <div className="border-t border-gray-200 my-1"></div>
                   <button
-                    onClick={() => window.location.href = `/informasi/berita?search=${encodeURIComponent(searchQuery)}`}
+                    onClick={() => window.location.href = `/informasi/berita?q=${encodeURIComponent(searchQuery)}`}
                     className="w-full px-4 py-2.5 text-left hover:bg-gray-50 transition-colors flex items-center gap-3 text-sm"
                   >
                     <svg className="w-4 h-4 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">

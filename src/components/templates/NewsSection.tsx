@@ -1,7 +1,16 @@
 import Link from 'next/link'
-import { beritaTerkini } from '@/lib/data'
+import clientPromise from '@/lib/mongodb'
 
-export default function NewsSection() {
+export default async function NewsSection() {
+  const client = await clientPromise;
+  const db = client.db("berita_db");
+  const beritaTerkini = await db
+    .collection("berita")
+    .find({})
+    .sort({ tanggal: -1 })
+    .limit(3)
+    .toArray();
+
   const formatDate = (dateString: string) => {
     const date = new Date(dateString)
     return date.toLocaleDateString('id-ID', {
@@ -14,13 +23,24 @@ export default function NewsSection() {
   const getCategoryColor = (category: string) => {
     switch (category) {
       case 'Perumahan':
-        return 'bg-blue-500'
+        return 'bg-gradient-to-r from-blue-600 to-indigo-600 shadow-blue-200'
       case 'Kawasan Permukiman':
-        return 'bg-green-500'
+        return 'bg-gradient-to-r from-emerald-500 to-teal-600 shadow-emerald-200'
       case 'Pertanahan':
-        return 'bg-orange-500'
+        return 'bg-gradient-to-r from-orange-500 to-amber-600 shadow-orange-200'
       default:
-        return 'bg-gray-500'
+        const colors = [
+          'from-purple-500 to-indigo-600 shadow-purple-200',
+          'from-rose-500 to-pink-600 shadow-rose-200',
+          'from-cyan-500 to-blue-600 shadow-cyan-200',
+          'from-amber-500 to-yellow-600 shadow-amber-200'
+        ]
+        let hash = 0
+        for (let i = 0; i < category.length; i++) {
+          hash = category.charCodeAt(i) + ((hash << 5) - hash)
+        }
+        const index = Math.abs(hash) % colors.length
+        return `bg-gradient-to-r ${colors[index]}`
     }
   }
 
@@ -52,7 +72,7 @@ export default function NewsSection() {
 
         {/* News Grid */}
         <div className="grid md:grid-cols-3 gap-6 mb-10">
-          {beritaTerkini.slice(0, 3).map((berita) => (
+          {beritaTerkini.map((berita) => (
             <article key={berita.id} className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg border border-white/20 overflow-hidden hover:shadow-2xl hover:scale-105 transition-all duration-300 group">
               {/* Image Placeholder */}
               <div className="aspect-video bg-gradient-to-br from-gray-100 via-gray-50 to-blue-50 relative overflow-hidden">
@@ -64,7 +84,7 @@ export default function NewsSection() {
                 
                 {/* Category Badge */}
                 <div className="absolute top-3 left-3">
-                  <span className={`${getCategoryColor(berita.kategori)} text-white text-xs font-semibold px-2.5 py-1 rounded-full shadow-lg backdrop-blur-sm`}>
+                  <span className={`${getCategoryColor(berita.kategori)} text-white text-[10px] font-bold px-2.5 py-1 rounded-full shadow-lg backdrop-blur-sm tracking-wider uppercase`}>
                     {berita.kategori}
                   </span>
                 </div>

@@ -1,11 +1,9 @@
-import { beritaTerkini } from '@/lib/data'
+import clientPromise from '@/lib/mongodb'
 import Link from 'next/link'
 import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 
 type Params = Promise<{ id: string }>
-
-type SearchParams = { [key: string]: string | string[] | undefined }
 
 export async function generateMetadata({ 
   params 
@@ -13,7 +11,9 @@ export async function generateMetadata({
   params: Params 
 }): Promise<Metadata> {
   const { id } = await params
-  const berita = beritaTerkini.find(b => b.id === parseInt(id))
+  const client = await clientPromise
+  const db = client.db("berita_db")
+  const berita = await db.collection("berita").findOne({ id: parseInt(id) })
   
   if (!berita) {
     return {
@@ -33,13 +33,16 @@ export default async function BeritaDetailPage({
   params: Params 
 }) {
   const { id } = await params
-  const berita = beritaTerkini.find(b => b.id === parseInt(id))
+  const client = await clientPromise
+  const db = client.db("berita_db")
+  const berita = await db.collection("berita").findOne({ id: parseInt(id) })
   
   if (!berita) {
     notFound()
   }
 
   const formatDate = (dateString: string) => {
+    if (!dateString) return ''
     const date = new Date(dateString)
     return date.toLocaleDateString('id-ID', {
       day: 'numeric',
@@ -122,7 +125,7 @@ export default async function BeritaDetailPage({
                   <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                   </svg>
-                  {berita.penulis}
+                  {berita.penulis || 'Humas Dinas Perkimtan'}
                 </span>
               </div>
             </div>
@@ -130,16 +133,13 @@ export default async function BeritaDetailPage({
 
           {/* Content */}
           <div className="p-8 md:p-12">
-            <div className="prose prose-lg prose-blue max-w-none">
-              <p className="text-gray-600 leading-relaxed text-lg">
-                {berita.konten || berita.ringkasan}
-              </p>
+            <div className="prose prose-lg prose-blue max-w-none" dangerouslySetInnerHTML={{ __html: berita.isi || berita.ringkasan }}>
             </div>
 
             <div className="border-t border-gray-100 pt-6 mt-8">
               <div className="flex items-center justify-between">
                 <div className="text-sm text-gray-500">
-                  Ditulis oleh <span className="font-medium">{berita.penulis}</span>
+                  Ditulis oleh <span className="font-medium">{berita.penulis || 'Humas Dinas Perkimtan'}</span>
                 </div>
                 <div className="flex items-center space-x-4">
                   <button className="text-gray-400 hover:text-blue-600 transition-colors">
